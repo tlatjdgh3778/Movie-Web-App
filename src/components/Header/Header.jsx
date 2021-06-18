@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { ModalStateContext } from 'contexts/modal';
 import { AppBar, Typography, Toolbar, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -15,9 +16,14 @@ const HeaderContainer = styled.div`
 `;
 
 const Header = () => {
+    const { state, actions } = useContext(ModalStateContext);
+
+    const menuOpen = () => {
+        actions.setIsOpen(true);
+    }
     return(
         <HeaderContainer>
-            <IconButton>
+            <IconButton onClick={menuOpen}>
                 <MenuIcon/>
             </IconButton>
             <Typography>Movie Web</Typography>
