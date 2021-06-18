@@ -12,7 +12,6 @@ const HeaderContainer = styled.div`
     padding: 1rem;
     border: 1px solid black;
     height: 2rem;
-
 `;
 
 const Header = () => {
