@@ -27,11 +27,11 @@ const Main = () => {
         fetchData();
     }, []);
 
-    if(state.popular.length === 0){
-        // console.log("null !!");
-    }else{
-        console.log(state.popular);
-    }
+    // if(state.popular.length === 0){
+    //     // console.log("null !!");
+    // }else{
+    //     console.log(state.popular);
+    // }
     // if(state.nowPlaying.length === 0){
     //     // console.log("null !!");
     // }else{
@@ -42,46 +42,80 @@ const Main = () => {
     // }else{
     //     console.log(state.topRated);
     // }
-    // if(state.trend.length === 0){
-    //     // console.log("null !!");
-    // }else{
-    //     console.log(state.trend);
-    // }
+    if(state.trend.length === 0){
+        // console.log("null !!");
+    }else{
+        console.log(state.trend);
+    }
 
     return(
         <MainContainer>
+            {/* 인기있는 영화 */}
             <div>
                 {state.popular.length === 0 
                 ? 
                 <div>로딩중</div>
                 :
-                <div>{state.popular.results.map(title => {
-                    return <div>title</div>
-                })}</div>}
+                <div>
+                    {state.popular.results.map((movie, i) => {
+                        return (
+                            <div key={i}>
+                                <div>{movie.title}</div>
+                                <div>{movie.overview}</div>
+                            </div>
+                        )
+                    })}
+                </div>}
             </div>
+            {/* 상영중인 영화 */}
             <div>
                 {state.nowPlaying.length === 0 
                 ? 
                 <div>로딩중</div>
                 :
-                <div>now</div>}
+                <div>
+                    {state.nowPlaying.results.map((movie, i) => {
+                        return(
+                            <div key={i}>
+                                <div>{movie.title}</div>
+                                <div>{movie.overview}</div>
+                            </div>
+                        )
+                    })}
+                </div>}
             </div>
+            {/* 별점높은 영화 */}
             <div>
                 {state.topRated.length === 0 
                 ? 
                 <div>로딩중</div>
                 :
-                <div>top</div>}
+                <div>
+                    {state.topRated.results.map((movie, i) => {
+                        return(
+                            <div key={i}>
+                                <div>{movie.title}</div>
+                                <div>{movie.overview}</div>
+                            </div>
+                        )
+                    })}
+                </div>}
             </div>
+            {/* 트렌드 영화 컴포넌트 */}
             <div>
                 {state.trend.length === 0 
                 ? 
                 <div>로딩중</div>
                 :
-                <div>trend</div>}
+                <div>
+                    <div>{state.trend.results[5].title}</div>
+                    <div>{state.trend.results[5].overview}</div>
+                    <div>{state.trend.results[5].id}</div>
+                </div>}
             </div>
         </MainContainer>
     );
 }
 
 export default Main;
+
