@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ModalStateContext } from 'contexts/modal';
+import { NavLink } from 'react-router-dom';
 
 const Background = styled.div`
     position: fixed;
@@ -44,10 +45,11 @@ const Menu = () => {
             <Background>
                 <CloseBtn onClick={closeMenu}>X</CloseBtn>
                 <MenuContent>
-                    <div>인기영화</div>
-                    <div>좋은평가</div>
-                    <div>상영중</div>
-                    <div>좋아요</div>
+                    <NavLink to="/">메인화면</NavLink>
+                    <NavLink to="/Popular">인기영화</NavLink>
+                    <NavLink to="/TopRated">좋은평가</NavLink>
+                    <NavLink to="/NowPlaying">상영중</NavLink>
+                    <NavLink to="/Likes">좋아요</NavLink>
                     <div>다크모드</div>
                 </MenuContent>
             </Background> : null }
