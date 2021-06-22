@@ -53,4 +53,16 @@ const getTrendingMovie = async () => {
     }  
 }
 
-export { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie };
+const getSearchMovie = async (data) => {
+    try {
+        const searchMovie = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=ko&query=${data}&page=1&include_adult=false`);
+
+        const searchMovieResponse = await searchMovie.json();
+
+        console.log(searchMovieResponse);
+        return searchMovieResponse;
+    }catch(error) {
+        console.log(error);
+    }
+}
+export { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getSearchMovie };
