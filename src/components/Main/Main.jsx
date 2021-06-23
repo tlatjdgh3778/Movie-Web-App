@@ -50,6 +50,18 @@ const Main = () => {
 
     return(
         <MainContainer>
+            {/* 트렌드 영화 컴포넌트 */}
+            <div>
+                {state.trend.length === 0 
+                ? 
+                <div>로딩중</div>
+                :
+                <div>
+                    <div>{state.trend.results[5].title}</div>
+                    <div>{state.trend.results[5].overview}</div>
+                    <div>{state.trend.results[5].id}</div>
+                </div>}
+            </div>
             {/* 인기있는 영화 */}
             <div>
                 {state.popular.length === 0 
@@ -99,18 +111,6 @@ const Main = () => {
                             </div>
                         )
                     })}
-                </div>}
-            </div>
-            {/* 트렌드 영화 컴포넌트 */}
-            <div>
-                {state.trend.length === 0 
-                ? 
-                <div>로딩중</div>
-                :
-                <div>
-                    <div>{state.trend.results[5].title}</div>
-                    <div>{state.trend.results[5].overview}</div>
-                    <div>{state.trend.results[5].id}</div>
                 </div>}
             </div>
         </MainContainer>
