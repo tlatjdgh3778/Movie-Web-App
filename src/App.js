@@ -9,9 +9,11 @@ import NowPlaying from 'components/NowPlaying/NowPlaying';
 import TopRated from 'components/TopRated/TopRated';
 import Likes from 'components/Likes/Likes';
 import Footer from 'components/Footer/Footer';
+import Results from 'components/Results/Results';
 import Menu from 'components/Menu/Menu';
 import { StylesProvider } from '@material-ui/core';
 import { ModalStateProvider } from 'contexts/modal';
+import { ResultProvider } from 'contexts/results';
 import { MovieProvider } from 'contexts/movie';
 import { Switch, Route } from 'react-router-dom';
 
@@ -25,6 +27,7 @@ function App() {
         <div className="App">
           <StylesProvider injectFirst>
             <MovieProvider>
+            <ResultProvider>
             <ModalStateProvider>
               <Header></Header>
               <Switch>
@@ -43,10 +46,14 @@ function App() {
                 <Route exact path="/Likes">
                   <Likes></Likes>
                 </Route>
+                <Route exact path="/Results">
+                  <Results></Results>
+                </Route>
               </Switch>
               <Menu></Menu>
               <Footer></Footer>
             </ModalStateProvider>
+            </ResultProvider>
             </MovieProvider>
           </StylesProvider>
         </div>
