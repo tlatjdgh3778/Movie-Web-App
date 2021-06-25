@@ -10,6 +10,7 @@ import TopRated from 'components/TopRated/TopRated';
 import Likes from 'components/Likes/Likes';
 import Footer from 'components/Footer/Footer';
 import Results from 'components/Results/Results';
+import Detail from 'components/Detail/Detail';
 import Menu from 'components/Menu/Menu';
 import { StylesProvider } from '@material-ui/core';
 import { ModalStateProvider } from 'contexts/modal';
@@ -18,7 +19,7 @@ import { MovieProvider } from 'contexts/movie';
 import { Switch, Route } from 'react-router-dom';
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   return (
     <>
@@ -48,6 +49,9 @@ function App() {
                 </Route>
                 <Route exact path="/Results">
                   <Results></Results>
+                </Route>
+                <Route path="/Detail">
+                  <Detail></Detail>
                 </Route>
               </Switch>
               <Menu></Menu>
