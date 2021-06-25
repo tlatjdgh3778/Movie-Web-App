@@ -59,7 +59,6 @@ const getSearchMovie = async (data) => {
 
         const searchMovieResponse = await searchMovie.json();
 
-        console.log(searchMovieResponse);
         return searchMovieResponse;
     }catch(error) {
         console.log(error);
