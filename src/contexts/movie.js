@@ -6,12 +6,14 @@ const MovieContext = createContext({
         nowPlaying: [],
         topRated: [],
         trend: [],
+        detail: [],
     },
     actions: {
         setPopular: () => {},
         setNowPlaying: () => {},
         setTopRated: () => {},
         setTrend: () => {},
+        setDetail: () => {},
     },
 });
 
@@ -20,10 +22,11 @@ const MovieProvider = ({ children }) => {
     const [nowPlaying, setNowPlaying] = useState([]);
     const [topRated, setTopRated] = useState([]);
     const [trend, setTrend] = useState([]);
+    const [detail, setDetail] = useState([]);
 
     const value = {
-        state: { popular, nowPlaying, topRated, trend },
-        actions: { setPopular, setNowPlaying, setTopRated, setTrend },
+        state: { popular, nowPlaying, topRated, trend, detail },
+        actions: { setPopular, setNowPlaying, setTopRated, setTrend, setDetail },
     };
 
     return(
