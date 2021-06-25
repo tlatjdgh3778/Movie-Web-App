@@ -27,27 +27,6 @@ const Main = () => {
         fetchData();
     }, []);
 
-    // if(state.popular.length === 0){
-    //     // console.log("null !!");
-    // }else{
-    //     console.log(state.popular);
-    // }
-    // if(state.nowPlaying.length === 0){
-    //     // console.log("null !!");
-    // }else{
-    //     console.log(state.nowPlaying);
-    // }
-    // if(state.topRated.length === 0){
-    //     // console.log("null !!");
-    // }else{
-    //     console.log(state.topRated);
-    // }
-    if(state.trend.length === 0){
-        // console.log("null !!");
-    }else{
-        console.log(state.trend);
-    }
-
     return(
         <MainContainer>
             {/* 트렌드 영화 컴포넌트 */}
