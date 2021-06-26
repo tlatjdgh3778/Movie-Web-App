@@ -28,7 +28,7 @@ const Title = styled.div`
 
 `;
 const Contet = styled.div`
-    font-size: 1.5vw;
+    font-size: 3vw;
     padding-left: 5vw;
 `;
 
