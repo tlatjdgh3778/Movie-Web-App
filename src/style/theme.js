@@ -25,6 +25,8 @@ const darkMode = {
     color: {
         fontColor: '#fff',
         bgColor: '#121212',
+        fontHoverColor: '#c9c9c9',
+        listBgColor: '#0d0c0c',
     }
 }
 
@@ -34,6 +36,7 @@ const lightMode = {
     color: {
         fontColor: '#121212',
         bgColor: '#fff',
+        fontHoverColor: '#dbd9d3'
     }
 }
 
