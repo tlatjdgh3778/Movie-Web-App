@@ -36,6 +36,7 @@ const Main = () => {
     const random = Math.floor(Math.random() * 10);
 
     const backdropImg = "https://image.tmdb.org/t/p/original/";
+    const nullImg = "http://collaboparty1004.cafe24.com/xe/files/attach/images/139/483/d8c711f2e76e6be056d911b8fbed47fd.jpg";
 
     useEffect(() => {
         const fetchData = async () => {
@@ -62,7 +63,7 @@ const Main = () => {
         history.push(`/Detail/${state.trend.results[random].id}`);
     };
 
-
+    console.log(backdropImg);
     return(
         <S.MainContainer>
             {/* 트렌드 영화 컴포넌트 */}
@@ -71,7 +72,7 @@ const Main = () => {
                 ? 
                 <div>로딩중</div>
                 :
-                    <S.MainMovieContainer backdropPath={backdropImg + state.detail.backdrop_path}
+                    <S.MainMovieContainer backdropPath={state.detail.backdrop_path}
                     >
                         <S.Title>{state.detail.title}</S.Title>
                         <S.Content>{state.detail.tagline}</S.Content>
@@ -93,7 +94,7 @@ const Main = () => {
                         {state.popular.results.map((movie, i) => {
                             return (
                                 <S.Movie key={i}>
-                                    <img src={backdropImg + movie.backdrop_path}></img>
+                                    <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
                                     <S.MovieTitle title={movie.title}></S.MovieTitle>
                                 </S.Movie>
                             )
@@ -116,7 +117,7 @@ const Main = () => {
                         {state.nowPlaying.results.map((movie, i) => {
                             return(
                                 <S.Movie key={i}>
-                                    <img src={backdropImg + movie.backdrop_path}></img>
+                                    <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
                                     <S.MovieTitle title={movie.title}></S.MovieTitle>
                                 </S.Movie>
                             )
@@ -139,7 +140,7 @@ const Main = () => {
                         {state.topRated.results.map((movie, i) => {
                             return(
                                 <S.Movie key={i}>
-                                    <img src={backdropImg + movie.backdrop_path}></img>
+                                    <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
                                     <S.MovieTitle title={movie.title}></S.MovieTitle>
                                 </S.Movie>
                             )
