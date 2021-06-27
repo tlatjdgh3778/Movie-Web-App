@@ -12,7 +12,8 @@ import Footer from 'components/Footer/Footer';
 import Results from 'components/Results/Results';
 import Detail from 'components/Detail/Detail';
 import Menu from 'components/Menu/Menu';
-import { StylesProvider } from '@material-ui/core';
+import { StylesProvider, ThemeProvider as MuiThemeProvider } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { ModalStateProvider } from 'contexts/modal';
 import { ResultProvider } from 'contexts/results';
 import { MovieProvider } from 'contexts/movie';
@@ -20,13 +21,24 @@ import { Switch, Route } from 'react-router-dom';
 
 function App() {
   const [isDark, setIsDark] = useState(true);
-
+  const themeBreakPoint = createMuiTheme({
+    breakpoints: {
+      values: {
+        mobile: '(max-width:400px)',
+        tablet: '(min-width:401px) and (max-width:768px)',
+        laptop: '(min-width:769px) and (max-width:1024px)',
+        desktop: '(min-width:1025px)',
+      },
+    },
+  });
+  
   return (
     <>
+    <StylesProvider injectFirst>
     <ThemeProvider theme={isDark ? theme.darkMode : theme.lightMode}>
+      <MuiThemeProvider theme={themeBreakPoint}>
       <GlobalStyle />
         <div className="App">
-          <StylesProvider injectFirst>
             <MovieProvider>
             <ResultProvider>
             <ModalStateProvider>
@@ -59,9 +71,10 @@ function App() {
             </ModalStateProvider>
             </ResultProvider>
             </MovieProvider>
-          </StylesProvider>
         </div>
+        </MuiThemeProvider>
       </ThemeProvider>
+      </StylesProvider>
     </>
   );
 }
