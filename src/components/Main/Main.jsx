@@ -3,6 +3,7 @@ import { MovieContext } from 'contexts/movie';
 import { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getMovieDetail } from 'apis/getMovieData';
 import { useHistory } from 'react-router-dom';
 import * as S from './Main.style';
+import * as GS from 'style/componentstyle';
 import { useTheme } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
 
@@ -63,7 +64,7 @@ const Main = () => {
         history.push(`/Detail/${state.trend.results[random].id}`);
     };
 
-    console.log(backdropImg);
+    // console.log(backdropImg)
     return(
         <S.MainContainer>
             {/* 트렌드 영화 컴포넌트 */}
@@ -72,82 +73,84 @@ const Main = () => {
                 ? 
                 <div>로딩중</div>
                 :
-                    <S.MainMovieContainer backdropPath={state.detail.backdrop_path}
+                    <S.MainMovieContainer backdropPath={backdropImg + state.detail.backdrop_path}
                     >
-                        <S.Title>{state.detail.title}</S.Title>
-                        <S.Content>{state.detail.tagline}</S.Content>
-                        <S.MoreBtn onClick={getDetail}>더보기</S.MoreBtn>
+                        <div>
+                            <S.Title>{state.detail.title}</S.Title>
+                            <S.Tagline>{state.detail.tagline}</S.Tagline>
+                            <S.MoreBtn onClick={getDetail}>더보기</S.MoreBtn>
+                        </div>
                     </S.MainMovieContainer>}
             </div>
             {/* 인기있는 영화 */}
-            <S.ListContainer>
-                <S.ListHeader>
-                    <S.ListTitle>인기있는 영화</S.ListTitle>
-                    <S.ViewAll>전체 보기</S.ViewAll>
-                </S.ListHeader>
-                <S.MovieContainer>
+            <GS.ListContainer>
+                <GS.ListHeader>
+                    <GS.ListTitle>인기있는 영화</GS.ListTitle>
+                    <GS.ViewAll>전체 보기</GS.ViewAll>
+                </GS.ListHeader>
+                <GS.MovieContainer>
                     {state.popular.length === 0 
                     ? 
                     <div>로딩중</div>
                     :
-                    <S.MovieList spacing={10} cols={getGridListCols()}>
+                    <GS.MovieList spacing={10} cols={getGridListCols()}>
                         {state.popular.results.map((movie, i) => {
                             return (
-                                <S.Movie key={i}>
+                                <GS.Movie key={i}>
                                     <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
-                                    <S.MovieTitle title={movie.title}></S.MovieTitle>
-                                </S.Movie>
+                                    <GS.MovieTitle title={movie.title}></GS.MovieTitle>
+                                </GS.Movie>
                             )
                         })}
-                    </S.MovieList>}
-                </S.MovieContainer>
-            </S.ListContainer>
+                    </GS.MovieList>}
+                </GS.MovieContainer>
+            </GS.ListContainer>
             {/* 상영중인 영화 */}
-            <S.ListContainer>
-                <S.ListHeader>
-                    <S.ListTitle>상영중인 영화</S.ListTitle>
-                    <S.ViewAll>전체 보기</S.ViewAll>
-                </S.ListHeader>
-                <S.MovieContainer>
+            <GS.ListContainer>
+                <GS.ListHeader>
+                    <GS.ListTitle>상영중인 영화</GS.ListTitle>
+                    <GS.ViewAll>전체 보기</GS.ViewAll>
+                </GS.ListHeader>
+                <GS.MovieContainer>
                     {state.nowPlaying.length === 0 
                     ? 
                     <div>로딩중</div>
                     :
-                    <S.MovieList spacing={10} cols={getGridListCols()}>
+                    <GS.MovieList spacing={10} cols={getGridListCols()}>
                         {state.nowPlaying.results.map((movie, i) => {
                             return(
-                                <S.Movie key={i}>
+                                <GS.Movie key={i}>
                                     <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
-                                    <S.MovieTitle title={movie.title}></S.MovieTitle>
-                                </S.Movie>
+                                    <GS.MovieTitle title={movie.title}></GS.MovieTitle>
+                                </GS.Movie>
                             )
                         })}
-                    </S.MovieList>}
-                </S.MovieContainer>
-            </S.ListContainer>
+                    </GS.MovieList>}
+                </GS.MovieContainer>
+            </GS.ListContainer>
             {/* 별점높은 영화 */}
-            <S.ListContainer>
-                <S.ListHeader>
-                    <S.ListTitle>별점높은 영화</S.ListTitle>
-                    <S.ViewAll>전체 보기</S.ViewAll>
-                </S.ListHeader>
-                <S.MovieContainer>
+            <GS.ListContainer>
+                <GS.ListHeader>
+                    <GS.ListTitle>별점높은 영화</GS.ListTitle>
+                    <GS.ViewAll>전체 보기</GS.ViewAll>
+                </GS.ListHeader>
+                <GS.MovieContainer>
                     {state.topRated.length === 0 
                     ? 
                     <div>로딩중</div>
                     :
-                    <S.MovieList spacing={10} cols={getGridListCols()}>
+                    <GS.MovieList spacing={10} cols={getGridListCols()}>
                         {state.topRated.results.map((movie, i) => {
                             return(
-                                <S.Movie key={i}>
+                                <GS.Movie key={i}>
                                     <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
-                                    <S.MovieTitle title={movie.title}></S.MovieTitle>
-                                </S.Movie>
+                                    <GS.MovieTitle title={movie.title}></GS.MovieTitle>
+                                </GS.Movie>
                             )
                         })}
-                    </S.MovieList >}
-                </S.MovieContainer>
-            </S.ListContainer>
+                    </GS.MovieList >}
+                </GS.MovieContainer>
+            </GS.ListContainer>
         </S.MainContainer>
     );
 }
