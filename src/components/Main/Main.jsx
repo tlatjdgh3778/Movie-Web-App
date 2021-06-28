@@ -57,11 +57,17 @@ const Main = () => {
         fetchData();
     }, []);
 
-    const getDetail = async () => {
+    const getTrendDetail = async () => {
         console.log(state.detail.title);
         const detail = await getMovieDetail(state.trend.results[random].id);
-
+        await setDetail(detail);
+        // console.log(detail);
         history.push(`/Detail/${state.trend.results[random].id}`);
+    };
+    const getDetail = async (id) => {
+        const detail = await getMovieDetail(id);
+        await setDetail(detail);
+        history.push(`/Detail/${id}`);
     };
 
     // console.log(backdropImg)
@@ -78,7 +84,7 @@ const Main = () => {
                         <div>
                             <S.Title>{state.detail.title}</S.Title>
                             <S.Tagline>{state.detail.tagline}</S.Tagline>
-                            <S.MoreBtn onClick={getDetail}>더보기</S.MoreBtn>
+                            <S.MoreBtn onClick={getTrendDetail}>더보기</S.MoreBtn>
                         </div>
                     </S.MainMovieContainer>}
             </div>
@@ -93,16 +99,18 @@ const Main = () => {
                     ? 
                     <div>로딩중</div>
                     :
-                    <GS.MovieList spacing={10} cols={getGridListCols()}>
+                    <GS.List spacing={10} cols={getGridListCols()}>
                         {state.popular.results.map((movie, i) => {
                             return (
-                                <GS.Movie key={i}>
+                                <GS.Movie key={i} onClick={e=> {
+                                    getDetail(e.currentTarget.childNodes[0].firstChild.id)
+                                }}>
                                     <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
                                     <GS.MovieTitle title={movie.title}></GS.MovieTitle>
                                 </GS.Movie>
                             )
                         })}
-                    </GS.MovieList>}
+                    </GS.List>}
                 </GS.MovieContainer>
             </GS.ListContainer>
             {/* 상영중인 영화 */}
@@ -116,16 +124,18 @@ const Main = () => {
                     ? 
                     <div>로딩중</div>
                     :
-                    <GS.MovieList spacing={10} cols={getGridListCols()}>
+                    <GS.List spacing={10} cols={getGridListCols()}>
                         {state.nowPlaying.results.map((movie, i) => {
                             return(
-                                <GS.Movie key={i}>
-                                    <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
+                                <GS.Movie key={i} onClick={e=> {
+                                    getDetail(e.currentTarget.childNodes[0].firstChild.id)
+                                }}>
+                                    <img id={movie.id} src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
                                     <GS.MovieTitle title={movie.title}></GS.MovieTitle>
                                 </GS.Movie>
                             )
                         })}
-                    </GS.MovieList>}
+                    </GS.List>}
                 </GS.MovieContainer>
             </GS.ListContainer>
             {/* 별점높은 영화 */}
@@ -139,16 +149,18 @@ const Main = () => {
                     ? 
                     <div>로딩중</div>
                     :
-                    <GS.MovieList spacing={10} cols={getGridListCols()}>
+                    <GS.List spacing={10} cols={getGridListCols()}>
                         {state.topRated.results.map((movie, i) => {
                             return(
-                                <GS.Movie key={i}>
-                                    <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
+                                <GS.Movie key={i} onClick={e=> {
+                                    getDetail(e.currentTarget.childNodes[0].firstChild.id)
+                                }}>
+                                    <img id={movie.id} src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
                                     <GS.MovieTitle title={movie.title}></GS.MovieTitle>
                                 </GS.Movie>
                             )
                         })}
-                    </GS.MovieList >}
+                    </GS.List >}
                 </GS.MovieContainer>
             </GS.ListContainer>
         </S.MainContainer>
