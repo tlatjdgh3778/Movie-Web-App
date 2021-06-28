@@ -1,52 +1,14 @@
 import styled from 'styled-components';
-import { Button, GridList, GridListTile, GridListTileBar } from '@material-ui/core';
-
-// 영화 리스트 재활용 가능..
-const ListContainer = styled.div`
-    background-color: ${(props) => props.theme.color.listBgColor};
-`;
-const ListHeader = styled.div`
-    display: flex;
-    justify-content: space-between;
-    padding: 1vw;
-`;
-const ListTitle = styled.div`
-    color: ${(props) => props.theme.color.fontColor};
-`;
-const ViewAll = styled.div`
-    cursor: pointer;
-    color: ${(props) => props.theme.color.fontColor};
-    
-    &:hover {
-        transition: all 0.2s ease;
-        color: ${(props) => props.theme.color.fontHoverColor};
-    }
-`;
-const MovieContainer = styled.div`
-    padding: 1vw;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    overflow: hidden;
-`;
-const MovieList = styled(GridList)`
-    flex-wrap: nowrap;
-`;
-
-const Movie = styled(GridListTile)`
-    cursor: pointer;
-`;
-const MovieTitle = styled(GridListTileBar)`
-    color: white;
-`;
-// 여기까지
+import { Button } from '@material-ui/core';
 
 const MainContainer = styled.div`
     border: 1px solid black;
 `;
 
+// 메인화면, 영화 상세페이지 큰 화면
 const MainMovieContainer = styled.div`
     /* width: 100%; */
+    display: flex;
     height: 40vw;
     background-image: url(${({ backdropPath }) => backdropPath});
     background-size: cover;
@@ -57,9 +19,21 @@ const MainMovieContainer = styled.div`
     /* display: inline-block; */
     position: relative;
     /* inset: 0px; */
+    &::before {
+        content: "";
+        opacity: 0.5;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background-color: #000;
+    }
 `;
 
+// 영화 제목
 const Title = styled.div`
+    position: relative;
     font-size: 5vw;
     padding-top: 10vw;
     padding-left: 5vw;
@@ -67,7 +41,8 @@ const Title = styled.div`
     color: ${(props) => props.theme.color.fontColor};
 `;
 
-const Content = styled.div`
+const Tagline = styled.div`
+    position: relative;
     font-size: 3vw;
     padding-left: 5vw;
 `;
@@ -85,5 +60,4 @@ const MoreBtn = styled(Button)`
     }
 `;
 
-
-export { MainMovieContainer, MainContainer, Title, Content, MoreBtn, MovieList, Movie, MovieContainer, MovieTitle, ListContainer, ViewAll, ListTitle, ListHeader };
+export { MainContainer, MainMovieContainer, Tagline, MoreBtn, Title };
