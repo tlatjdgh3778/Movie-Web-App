@@ -1,14 +1,39 @@
 import React, { useContext } from 'react';
 import { MovieContext } from 'contexts/movie';
+import * as S from './Detail.style';
+import * as GS from 'style/componentstyle';
 
 const Detail = () => {
     const { detail } = useContext(MovieContext).state;
+    const backdropImg = "https://image.tmdb.org/t/p/original/";
 
     console.log(detail);
     return(
         <>
-            <div>{detail.title}</div>
-            <div>{detail.tagline}</div>
+            {/* 영화 상세 페이지 */}
+            <div>
+                {detail.length === 0 
+                ? 
+                <div>로딩중</div>
+                :
+                    <S.DetailMovieContainer backdropPath={backdropImg + detail.backdrop_path}
+                    >
+                        <S.MovieContentContainer>
+                            <S.Title>{detail.title} ({detail.release_date.substring(0,4)})</S.Title>
+                            <S.VoteAvg>평점 {detail.vote_average} / 10</S.VoteAvg>
+                            <S.Tagline>{detail.tagline}</S.Tagline>
+                            <S.Overview>{detail.overview}</S.Overview>
+                            {detail.genres.map((genre, i) => {
+                                return <S.Genre key={i}>{genre.name} </S.Genre>
+                            })}
+                            <S.Runtime>{detail.runtime}분</S.Runtime>
+                            <button>마음에 들어요</button>
+                        </S.MovieContentContainer>
+                        <S.PosterContainer>
+                            <S.Poster posterPath={backdropImg + detail.poster_path}></S.Poster>
+                        </S.PosterContainer>
+                    </S.DetailMovieContainer>}
+            </div>
         </>
     );
 }
