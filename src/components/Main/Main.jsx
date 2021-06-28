@@ -57,13 +57,6 @@ const Main = () => {
         fetchData();
     }, []);
 
-    const getTrendDetail = async () => {
-        console.log(state.detail.title);
-        const detail = await getMovieDetail(state.trend.results[random].id);
-        await setDetail(detail);
-        // console.log(detail);
-        history.push(`/Detail/${state.trend.results[random].id}`);
-    };
     const getDetail = async (id) => {
         const detail = await getMovieDetail(id);
         await setDetail(detail);
@@ -84,7 +77,9 @@ const Main = () => {
                         <div>
                             <S.Title>{state.detail.title}</S.Title>
                             <S.Tagline>{state.detail.tagline}</S.Tagline>
-                            <S.MoreBtn onClick={getTrendDetail}>더보기</S.MoreBtn>
+                            <S.MoreBtn id={state.detail.id} onClick={e=>{
+                                getDetail(e.currentTarget.id);
+                            }}>더보기</S.MoreBtn>
                         </div>
                     </S.MainMovieContainer>}
             </div>
