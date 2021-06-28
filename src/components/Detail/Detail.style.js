@@ -1,16 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 // 메인화면, 영화 상세페이지 큰 화면
-const DetailMovieContainer = styled.div`
-    /* width: 100%; */
-    margin: 1px;
-    display: flex;
-    height: 40vw;
+
+const BackgroundImage = css`
     background-image: url(${({ backdropPath }) => backdropPath});
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    opacity: 1;
     transition: all 0.2s ease 0s;
     /* display: inline-block; */
     position: relative;
@@ -26,8 +22,17 @@ const DetailMovieContainer = styled.div`
         bottom: 0px;
         background-color: #000;
     }
+`;
+
+const DetailMovieContainer = styled.div`
+    display: flex;
+    height: 40vw;
+    ${BackgroundImage};
+
     ${(props) => props.theme.device.Tablet}{
         flex-direction: column-reverse;
+        background-image: none;
+        height: 80vw;
     }
 `;
 
@@ -48,19 +53,34 @@ const Title = styled.div`
 `;
 
 const VoteAvg = styled.div`
-    font-size: 1vw;
+    font-size: 1.5vw;
+    ${(props) => props.theme.device.Tablet}{
+        font-size: 2vw;
+    }
 `;
 
 const Genre = styled.span`
     font-size: 1.5vw;
+    ${(props) => props.theme.device.Tablet}{
+        font-size: 2.5vw;
+    }
 `;
 
 const Runtime = styled.div`
     font-size: 1.5vw;
+    padding-top: 0.5vw;
+    ${(props) => props.theme.device.Tablet}{
+        font-size: 2.5vw;
+    }
 `;
 
 const Overview = styled.div`
     font-size: 1.5vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    ${(props) => props.theme.device.Tablet}{
+        font-size: 2.5vw;
+    }
 `;
 
 const Tagline = styled.div`
@@ -68,13 +88,15 @@ const Tagline = styled.div`
 `;
 
 const PosterContainer = styled.div`
-    padding-top: 4vw;
-    padding-right: 4vw;
-    padding-left: 2vw;
+    display: flex;
+    justify-content: center;
+    padding: 3vw;
     border: 1px solid blue;
     position: relative;
+
     ${(props) => props.theme.device.Tablet}{
-        
+        ${BackgroundImage};
+        height: 100%;
     }
 `;
 
@@ -85,6 +107,12 @@ const Poster = styled.div`
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+
+    ${(props) => props.theme.device.Tablet}{
+        position: relative;
+        height: 100%;
+        width: 45vw;
+    }
 `;
 
 export { DetailMovieContainer, MovieContentContainer, Title, Overview, Tagline, PosterContainer, Poster, VoteAvg, Genre, Runtime };
