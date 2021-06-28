@@ -26,7 +26,7 @@ const Detail = () => {
                 <S.MovieContentContainer>
                     <S.Title>{detail.title} ({detail.release_date.substring(0,4)})</S.Title>
                     <S.VoteAvg>평점 {detail.vote_average} / 10</S.VoteAvg>
-                    <S.Tagline>{detail.tagline}</S.Tagline>
+                    {/* <S.Tagline>{detail.tagline}</S.Tagline> */}
                     <S.Overview>{detail.overview}</S.Overview>
                     {detail.genres.map((genre, i) => {
                         return <S.Genre key={i}>{genre.name} </S.Genre>
@@ -50,7 +50,7 @@ const Detail = () => {
                             <S.MovieContentContainer>
                                 <S.Title>{detail.title} ({detail.release_date.substring(0,4)})</S.Title>
                                 <S.VoteAvg>평점 {detail.vote_average} / 10</S.VoteAvg>
-                                <S.Tagline>{detail.tagline}</S.Tagline>
+                                {/* <S.Tagline>{detail.tagline}</S.Tagline> */}
                                 <S.Overview>{detail.overview}</S.Overview>
                                 {detail.genres.map((genre, i) => {
                                     return <S.Genre key={i}>{genre.name} </S.Genre>
