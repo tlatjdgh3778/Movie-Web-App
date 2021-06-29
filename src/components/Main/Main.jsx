@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { MovieContext } from 'contexts/movie';
-import { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getMovieDetail } from 'apis/getMovieData';
+import { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getMovieDetail, getMovieCredit } from 'apis/getMovieData';
 import { useHistory } from 'react-router-dom';
 import * as S from './Main.style';
 import * as GS from 'style/componentstyle';
@@ -32,7 +32,7 @@ const Main = () => {
     }
 
     const { state } = useContext(MovieContext);
-    const { setPopular, setNowPlaying, setTopRated, setTrend, setDetail } = useContext(MovieContext).actions;
+    const { setPopular, setNowPlaying, setTopRated, setTrend, setDetail, setCredit } = useContext(MovieContext).actions;
     const history = useHistory();
     const random = Math.floor(Math.random() * 10);
 
@@ -59,7 +59,11 @@ const Main = () => {
 
     const getDetail = async (id) => {
         const detail = await getMovieDetail(id);
+        const credit = await getMovieCredit(id);
+        
+        console.log(id);
         await setDetail(detail);
+        await setCredit(credit);
         history.push(`/Detail/${id}`);
     };
 
@@ -97,8 +101,8 @@ const Main = () => {
                     <GS.List spacing={10} cols={getGridListCols()}>
                         {state.popular.results.map((movie, i) => {
                             return (
-                                <GS.Movie key={i} onClick={e=> {
-                                    getDetail(e.currentTarget.childNodes[0].firstChild.id)
+                                <GS.Movie id={movie.id} key={i} onClick={e=> {
+                                    getDetail(e.currentTarget.id)
                                 }}>
                                     <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
                                     <GS.MovieTitle title={movie.title}></GS.MovieTitle>
@@ -122,10 +126,10 @@ const Main = () => {
                     <GS.List spacing={10} cols={getGridListCols()}>
                         {state.nowPlaying.results.map((movie, i) => {
                             return(
-                                <GS.Movie key={i} onClick={e=> {
-                                    getDetail(e.currentTarget.childNodes[0].firstChild.id)
+                                <GS.Movie id={movie.id} key={i} onClick={e=> {
+                                    getDetail(e.currentTarget.id)
                                 }}>
-                                    <img id={movie.id} src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
+                                    <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
                                     <GS.MovieTitle title={movie.title}></GS.MovieTitle>
                                 </GS.Movie>
                             )
@@ -147,10 +151,10 @@ const Main = () => {
                     <GS.List spacing={10} cols={getGridListCols()}>
                         {state.topRated.results.map((movie, i) => {
                             return(
-                                <GS.Movie key={i} onClick={e=> {
-                                    getDetail(e.currentTarget.childNodes[0].firstChild.id)
+                                <GS.Movie id={movie.id} key={i} onClick={e=> {
+                                    getDetail(e.currentTarget.id)
                                 }}>
-                                    <img id={movie.id} src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
+                                    <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
                                     <GS.MovieTitle title={movie.title}></GS.MovieTitle>
                                 </GS.Movie>
                             )
