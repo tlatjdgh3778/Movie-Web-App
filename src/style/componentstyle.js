@@ -22,6 +22,7 @@ const ViewAll = styled.div`
         color: ${(props) => props.theme.color.fontHoverColor};
     }
 `;
+
 const MovieContainer = styled.div`
     padding: 1vw;
     display: flex;
@@ -29,7 +30,7 @@ const MovieContainer = styled.div`
     justify-content: space-around;
     overflow: hidden;
 `;
-const MovieList = styled(GridList)`
+const List = styled(GridList)`
     flex-wrap: nowrap;
 `;
 
@@ -37,8 +38,9 @@ const Movie = styled(GridListTile)`
     cursor: pointer;
 `;
 const MovieTitle = styled(GridListTileBar)`
+    pointer-events: none;
     color: white;
 `;
 // 여기까지
 
-export { ListContainer, ListHeader, ListTitle, ViewAll, MovieContainer, MovieList, Movie, MovieTitle };
+export { ListContainer, ListHeader, ListTitle, ViewAll, MovieContainer, List, Movie, MovieTitle };
