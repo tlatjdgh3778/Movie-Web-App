@@ -89,9 +89,9 @@ const getMovieCredit = async (movieId) => {
     }
 }
 
-const getRecommendationCredit = async (movieId) => {
+const getMovieRecommendation = async (movieId) => {
     try {
-        const recommendation = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${API_KEY}&language=ko-KR&page=1`);
+        const recommendation = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${API_KEY}&language=ko-KR&page=1`);
 
         const recommendationResponse = await recommendation.json();
 
@@ -101,4 +101,4 @@ const getRecommendationCredit = async (movieId) => {
     }
 }
 
-export { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getSearchMovie, getMovieDetail, getMovieCredit, getRecommendationCredit };
+export { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getSearchMovie, getMovieDetail, getMovieCredit, getMovieRecommendation };
