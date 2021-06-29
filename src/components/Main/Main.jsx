@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { MovieContext } from 'contexts/movie';
-import { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getMovieDetail, getMovieCredit, getMovieRecommendation } from 'apis/getMovieData';
+import { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo } from 'apis/getMovieData';
 import { useHistory } from 'react-router-dom';
 import * as S from './Main.style';
 import * as GS from 'style/componentstyle';
@@ -32,7 +32,7 @@ const Main = () => {
     }
 
     const { state } = useContext(MovieContext);
-    const { setPopular, setNowPlaying, setTopRated, setTrend, setDetail, setCredit, setRecommendation } = useContext(MovieContext).actions;
+    const { setPopular, setNowPlaying, setTopRated, setTrend, setDetail, setCredit, setRecommendation, setVideo } = useContext(MovieContext).actions;
     const history = useHistory();
     const random = Math.floor(Math.random() * 10);
 
@@ -61,10 +61,12 @@ const Main = () => {
         const detail = await getMovieDetail(id);
         const credit = await getMovieCredit(id);
         const recommendation = await getMovieRecommendation(id);
+        const video = await getMovieVideo(id);
         
         await setDetail(detail);
         await setCredit(credit);
         await setRecommendation(recommendation);
+        await setVideo(video);
         history.push(`/Detail/${id}`);
     };
 
@@ -105,7 +107,7 @@ const Main = () => {
                                     getDetail(e.currentTarget.id)
                                 }}>
                                     <GS.ListItem posterPath={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></GS.ListItem>
-                                    <GS.MovieTitle>{movie.title}</GS.MovieTitle>
+                                    <GS.ListItemTitle>{movie.title}</GS.ListItemTitle>
                                 </GS.ListItem>
                             )
                         })}
@@ -130,7 +132,7 @@ const Main = () => {
                                     getDetail(e.currentTarget.id)
                                 }}>
                                     <GS.ListItem posterPath={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></GS.ListItem>
-                                    <GS.MovieTitle>{movie.title}</GS.MovieTitle>
+                                    <GS.ListItemTitle>{movie.title}</GS.ListItemTitle>
                                 </GS.ListItem>
                             )
                         })}
@@ -155,7 +157,7 @@ const Main = () => {
                                     getDetail(e.currentTarget.id)
                                 }}>
                                     <GS.ListItem posterPath={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></GS.ListItem>
-                                    <GS.MovieTitle>{movie.title}</GS.MovieTitle>
+                                    <GS.ListItemTitle>{movie.title}</GS.ListItemTitle>
                                 </GS.ListItem>
                             )
                         })}
