@@ -12,6 +12,7 @@ body {
     color: ${(props) => props.theme.color.fontColor};
     background-color: ${(props) => props.theme.color.bgColor};
 }
+
 `;
 
 export default GlobalStyle; 
