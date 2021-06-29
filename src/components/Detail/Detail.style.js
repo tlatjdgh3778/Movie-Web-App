@@ -1,31 +1,9 @@
-import styled, { css } from 'styled-components';
-
-// 메인화면, 영화 상세페이지 큰 화면
-
-const BackgroundImage = css`
-    background-image: url(${({ backdropPath }) => backdropPath});
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    transition: all 0.2s ease 0s;
-    /* display: inline-block; */
-    position: relative;
-    /* inset: 0px; */
-
-    &::before {
-        content: "";
-        opacity: 0.5;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
-        background-color: #000;
-    }
-`;
+import { BackgroundImage } from 'style/componentstyle';
+import styled from 'styled-components';
 
 const DetailMovieContainer = styled.div`
     display: flex;
+    justify-content: space-between;
     height: 40vw;
     ${BackgroundImage};
 
@@ -88,10 +66,20 @@ const Tagline = styled.div`
 `;
 
 const PosterContainer = styled.div`
+    padding: 2vw;
     display: flex;
     justify-content: center;
-    padding: 3vw;
-    border: 1px solid blue;
+    position: relative;
+
+    ${(props) => props.theme.device.Tablet}{
+        ${BackgroundImage};
+        height: 100%;
+    }
+`;
+
+const ListItemContainer = styled.div`
+    display: flex;
+    justify-content: center;
     position: relative;
 
     ${(props) => props.theme.device.Tablet}{
@@ -102,7 +90,6 @@ const PosterContainer = styled.div`
 
 const Poster = styled.div`
     width: 20vw;
-    height: 30vw;
     background-image: url(${({ posterPath }) => posterPath });
     background-size: cover;
     background-position: center center;
@@ -115,4 +102,4 @@ const Poster = styled.div`
     }
 `;
 
-export { DetailMovieContainer, MovieContentContainer, Title, Overview, Tagline, PosterContainer, Poster, VoteAvg, Genre, Runtime };
+export { DetailMovieContainer, MovieContentContainer, Title, Overview, Tagline, PosterContainer, Poster, VoteAvg, Genre, Runtime, ListItemContainer };
