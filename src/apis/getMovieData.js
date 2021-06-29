@@ -89,4 +89,16 @@ const getMovieCredit = async (movieId) => {
     }
 }
 
-export { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getSearchMovie, getMovieDetail, getMovieCredit };
+const getRecommendationCredit = async (movieId) => {
+    try {
+        const recommendation = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${API_KEY}&language=ko-KR&page=1`);
+
+        const recommendationResponse = await recommendation.json();
+
+        return recommendationResponse;
+    }catch(error) {
+        console.log(error);
+    }
+}
+
+export { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getSearchMovie, getMovieDetail, getMovieCredit, getRecommendationCredit };
