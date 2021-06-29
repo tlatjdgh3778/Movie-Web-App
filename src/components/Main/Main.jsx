@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { MovieContext } from 'contexts/movie';
-import { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getMovieDetail, getMovieCredit } from 'apis/getMovieData';
+import { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getMovieDetail, getMovieCredit, getMovieRecommendation } from 'apis/getMovieData';
 import { useHistory } from 'react-router-dom';
 import * as S from './Main.style';
 import * as GS from 'style/componentstyle';
@@ -27,12 +27,12 @@ const Main = () => {
             return 4;
         }
         if(desktopMatches){
-            return 6;
+            return 5;
         }
     }
 
     const { state } = useContext(MovieContext);
-    const { setPopular, setNowPlaying, setTopRated, setTrend, setDetail, setCredit } = useContext(MovieContext).actions;
+    const { setPopular, setNowPlaying, setTopRated, setTrend, setDetail, setCredit, setRecommendation } = useContext(MovieContext).actions;
     const history = useHistory();
     const random = Math.floor(Math.random() * 10);
 
@@ -60,14 +60,14 @@ const Main = () => {
     const getDetail = async (id) => {
         const detail = await getMovieDetail(id);
         const credit = await getMovieCredit(id);
+        const recommendation = await getMovieRecommendation(id);
         
-        console.log(id);
         await setDetail(detail);
         await setCredit(credit);
+        await setRecommendation(recommendation);
         history.push(`/Detail/${id}`);
     };
 
-    // console.log(backdropImg)
     return(
         <S.MainContainer>
             {/* 트렌드 영화 컴포넌트 */}
@@ -98,15 +98,15 @@ const Main = () => {
                     ? 
                     <div>로딩중</div>
                     :
-                    <GS.List spacing={10} cols={getGridListCols()}>
+                    <GS.List cellHeight={'auto'} spacing={10} cols={getGridListCols()}>
                         {state.popular.results.map((movie, i) => {
                             return (
-                                <GS.Movie id={movie.id} key={i} onClick={e=> {
+                                <GS.ListItem id={movie.id} key={i} onClick={e=> {
                                     getDetail(e.currentTarget.id)
                                 }}>
-                                    <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
-                                    <GS.MovieTitle title={movie.title}></GS.MovieTitle>
-                                </GS.Movie>
+                                    <GS.ListItem posterPath={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></GS.ListItem>
+                                    <GS.MovieTitle>{movie.title}</GS.MovieTitle>
+                                </GS.ListItem>
                             )
                         })}
                     </GS.List>}
@@ -123,15 +123,15 @@ const Main = () => {
                     ? 
                     <div>로딩중</div>
                     :
-                    <GS.List spacing={10} cols={getGridListCols()}>
+                    <GS.List cellHeight={'auto'} spacing={10} cols={getGridListCols()}>
                         {state.nowPlaying.results.map((movie, i) => {
                             return(
-                                <GS.Movie id={movie.id} key={i} onClick={e=> {
+                                <GS.ListItem id={movie.id} key={i} onClick={e=> {
                                     getDetail(e.currentTarget.id)
                                 }}>
-                                    <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
-                                    <GS.MovieTitle title={movie.title}></GS.MovieTitle>
-                                </GS.Movie>
+                                    <GS.ListItem posterPath={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></GS.ListItem>
+                                    <GS.MovieTitle>{movie.title}</GS.MovieTitle>
+                                </GS.ListItem>
                             )
                         })}
                     </GS.List>}
@@ -148,15 +148,15 @@ const Main = () => {
                     ? 
                     <div>로딩중</div>
                     :
-                    <GS.List spacing={10} cols={getGridListCols()}>
+                    <GS.List cellHeight={'auto'} spacing={10} cols={getGridListCols()}>
                         {state.topRated.results.map((movie, i) => {
                             return(
-                                <GS.Movie id={movie.id} key={i} onClick={e=> {
+                                <GS.ListItem id={movie.id} key={i} onClick={e=> {
                                     getDetail(e.currentTarget.id)
                                 }}>
-                                    <img src={movie.backdrop_path === null ? nullImg : (backdropImg + movie.backdrop_path)}></img>
-                                    <GS.MovieTitle title={movie.title}></GS.MovieTitle>
-                                </GS.Movie>
+                                    <GS.ListItem posterPath={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></GS.ListItem>
+                                    <GS.MovieTitle>{movie.title}</GS.MovieTitle>
+                                </GS.ListItem>
                             )
                         })}
                     </GS.List >}
