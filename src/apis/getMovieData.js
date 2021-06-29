@@ -101,4 +101,16 @@ const getMovieRecommendation = async (movieId) => {
     }
 }
 
-export { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getSearchMovie, getMovieDetail, getMovieCredit, getMovieRecommendation };
+const getMovieVideo = async (movieId) => {
+    try {
+        const video = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=ko-KR`);
+
+        const videoResponse = await video.json();
+
+        return videoResponse;
+    }catch(error) {
+        console.log(error);
+    }
+}
+
+export { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getSearchMovie, getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo };
