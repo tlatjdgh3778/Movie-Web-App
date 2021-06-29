@@ -6,11 +6,15 @@ import * as S from './Detail.style';
 import * as GS from 'style/componentstyle';
 
 const Detail = () => {
+    const { detail, credit, recommendation, video } = useContext(MovieContext).state;
+
     const theme = useTheme();
     const mobileMatches = useMediaQuery(theme.breakpoints.values.mobile);
     const tabletMatches = useMediaQuery(theme.breakpoints.values.tablet);
     const laptopMatches = useMediaQuery(theme.breakpoints.values.laptop);
     const desktopMatches = useMediaQuery(theme.breakpoints.values.desktop);
+
+    
 
     const getGridListCols = () => {
         if(mobileMatches){
@@ -27,11 +31,12 @@ const Detail = () => {
         }
     }
 
-    const { detail, credit, recommendation } = useContext(MovieContext).state;
     const backdropImg = "https://image.tmdb.org/t/p/original/";
     const nullImg = "http://collaboparty1004.cafe24.com/xe/files/attach/images/139/483/d8c711f2e76e6be056d911b8fbed47fd.jpg";
+    const youtubeLink = "https://www.youtube.com/watch?v=";
+    const thumbnail ="https://i.ytimg.com/vi/";
 
-    console.log(recommendation);
+    console.log(video);
 // 
     // 타블렛 모바일 화면
     if(tabletMatches || mobileMatches) {
@@ -68,8 +73,8 @@ const Detail = () => {
                                     return (
                                         <GS.ListItem key={i}>
                                             <GS.ListItem posterPath={character.profile_path === null ? nullImg : (backdropImg + character.profile_path)}></GS.ListItem>
-                                            <GS.MovieTitle>{character.name}</GS.MovieTitle>
-                                            <GS.MovieTitle>{character.character}</GS.MovieTitle>
+                                            <GS.ListItemTitle>{character.name}</GS.ListItemTitle>
+                                            <GS.ListItemTitle>{character.character}</GS.ListItemTitle>
                                         </GS.ListItem>
                                     )
                                 })}
@@ -90,7 +95,7 @@ const Detail = () => {
                                     return (
                                         <GS.ListItem key={i}>
                                             <GS.ListItem posterPath={recommendation.poster_path === null ? nullImg : (backdropImg + recommendation.poster_path)}></GS.ListItem>
-                                            <GS.MovieTitle>{recommendation.title}</GS.MovieTitle>            
+                                            <GS.ListItemTitle>{recommendation.title}</GS.ListItemTitle>            
                                         </GS.ListItem>
                                     )
                                 })}
@@ -141,14 +146,37 @@ const Detail = () => {
                                     return (
                                         <GS.ListItem key={i}>
                                             <GS.ListItem posterPath={character.profile_path === null ? nullImg : (backdropImg + character.profile_path)}></GS.ListItem>
-                                            <GS.MovieTitle>{character.name}</GS.MovieTitle>
-                                            <GS.MovieTitle>{character.character}</GS.MovieTitle>
+                                            <GS.ListItemTitle>{character.name}</GS.ListItemTitle>
+                                            <GS.ListItemTitle>{character.character} 역</GS.ListItemTitle>
                                         </GS.ListItem>
                                     )
                                 })}
                             </GS.List>
                         </GS.MovieContainer>
                         </GS.ListContainer>
+                        {/* 예고편 */}
+                        <GS.ListContainer>
+                            <GS.ListHeader>
+                                <GS.ListTitle>예고편</GS.ListTitle>
+                            </GS.ListHeader>
+                            {video.results.length === 0 ? <div>예고편이 없습니다..</div> 
+                            :
+                            <>
+                            <GS.MovieContainer>
+                                <GS.List cellHeight={'auto'} spacing={10} cols={getGridListCols()}>
+                                    {video.results.map((video, i) => {
+                                        return (
+                                            <GS.ListItemVideo key={i}>
+                                                <GS.ListItemVideo posterPath={video.key === null ? nullImg : (thumbnail + video.key + "/sddefault.jpg")}></GS.ListItemVideo>
+                                                <GS.ListItemTitle>{video.name}</GS.ListItemTitle>            
+                                            </GS.ListItemVideo>
+                                        )
+                                    })}
+                                </GS.List>
+                            </GS.MovieContainer>
+                            </>
+                            }
+                        </GS.ListContainer> 
                         {/* 추천 영화 */}
                         <GS.ListContainer>
                             <GS.ListHeader>
@@ -163,7 +191,7 @@ const Detail = () => {
                                         return (
                                             <GS.ListItem key={i}>
                                                 <GS.ListItem posterPath={recommendation.poster_path === null ? nullImg : (backdropImg + recommendation.poster_path)}></GS.ListItem>
-                                                <GS.MovieTitle>{recommendation.title}</GS.MovieTitle>            
+                                                <GS.ListItemTitle>{recommendation.title}</GS.ListItemTitle>            
                                             </GS.ListItem>
                                         )
                                     })}
@@ -171,7 +199,7 @@ const Detail = () => {
                             </GS.MovieContainer>
                             </>
                             }
-                        </GS.ListContainer>
+                        </GS.ListContainer>     
                     </>
                     }
                 </div>
