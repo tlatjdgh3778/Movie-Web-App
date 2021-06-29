@@ -59,19 +59,34 @@ const List = styled(GridList)`
 
 const ListItem = styled(GridListTile)`
     cursor: pointer;
-    width: 20vw;
+    /* width: 20vw; */
     height: 30vw;
     background-image: url(${({ posterPath }) => posterPath });
     background-size: cover;
-    background-position: center center;
+    /* background-position: center center; */
     background-repeat: no-repeat;
 
     &:hover {
-        // 컬러 어둡게하고 레이팅 나오게 하자.
-        transform: scale(1.1);
-        transition: all 0.5s ease; 
-        z-index: 1111;
     }
+
+    ${(props) => props.theme.device.Tablet}{
+        position: relative;
+        height: 100%;
+        width: 45vw;
+    }
+`;
+const ListItemVideo = styled(GridListTile)`
+    cursor: pointer;
+    /* width: 20vw; */
+    height: 19vw;
+    background-image: url(${({ posterPath }) => posterPath });
+    background-size: contain;
+    /* background-position: center center; */
+    background-repeat: no-repeat;
+
+    &:hover {
+    }
+
     ${(props) => props.theme.device.Tablet}{
         position: relative;
         height: 100%;
@@ -79,11 +94,11 @@ const ListItem = styled(GridListTile)`
     }
 `;
 
-const MovieTitle = styled.div`
+const ListItemTitle = styled.div`
     color: white;
 `;
 // 여기까지
 
 
 
-export { ListContainer, ListHeader, ListTitle, ViewAll, MovieContainer, List, ListItem, MovieTitle, BackgroundImage };
+export { ListContainer, ListHeader, ListTitle, ViewAll, MovieContainer, List, ListItem, ListItemTitle, BackgroundImage, ListItemVideo };
