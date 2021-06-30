@@ -7,7 +7,6 @@ const MainContainer = styled.div`
 
 // 메인화면, 영화 상세페이지 큰 화면
 const MainMovieContainer = styled.div`
-    /* width: 100%; */
     display: flex;
     height: 40vw;
     background-image: url(${({ backdropPath }) => backdropPath});
@@ -16,9 +15,7 @@ const MainMovieContainer = styled.div`
     background-repeat: no-repeat;
     opacity: 1;
     transition: all 0.2s ease 0s;
-    /* display: inline-block; */
     position: relative;
-    /* inset: 0px; */
     &::before {
         content: "";
         opacity: 0.5;
