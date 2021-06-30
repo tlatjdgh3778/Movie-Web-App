@@ -55,13 +55,14 @@ const MovieContainer = styled.div`
 const List = styled(GridList)`
     flex-wrap: nowrap;
     overflow-y: hidden;
+    transform: translateZ(0);
 `;
 
 const ListItem = styled(GridListTile)`
     cursor: pointer;
     /* width: 20vw; */
-    height: 30vw;
-    background-image: url(${({ posterPath }) => posterPath });
+    height: 28vw;
+    background-image: url(${({ $posterPath }) => $posterPath });
     background-size: cover;
     /* background-position: center center; */
     background-repeat: no-repeat;
@@ -75,11 +76,12 @@ const ListItem = styled(GridListTile)`
         width: 45vw;
     }
 `;
+
 const ListItemVideo = styled(GridListTile)`
     cursor: pointer;
     /* width: 20vw; */
-    height: 19vw;
-    background-image: url(${({ posterPath }) => posterPath });
+    height: 10vw;
+    background-image: url(${({ $posterPath }) => $posterPath });
     background-size: contain;
     /* background-position: center center; */
     background-repeat: no-repeat;
