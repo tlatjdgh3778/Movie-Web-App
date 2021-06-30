@@ -49,7 +49,7 @@ const MovieContainer = styled.div`
     padding: 1vw;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
     overflow: hidden;
 `;
 const List = styled(GridList)`
