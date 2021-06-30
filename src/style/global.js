@@ -12,8 +12,14 @@ body {
     color: ${(props) => props.theme.color.fontColor};
     background-color: ${(props) => props.theme.color.bgColor};
 }
+
+img {
+    border-radius: 5px;
+}
+
 .MuiGridList-root {
     height: 25vw;
+    width: 100%;
 
     ${(props) => props.theme.device.Tablet} {
         height: 55vw;
@@ -32,11 +38,13 @@ body {
     cursor: pointer;
 }
 .MuiGridListTile-imgFullHeight {
-    cursor: pointer;
-}
-img {
+    left: 0;
+    top: 50%;
     width: 100%;
     height: 100%;
+    position: relative;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
 `;
 
