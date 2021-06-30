@@ -5,8 +5,7 @@ import { useHistory } from 'react-router-dom';
 import * as S from './Main.style';
 import * as GS from 'style/componentstyle';
 import { useTheme } from '@material-ui/core/styles';
-import { useMediaQuery } from '@material-ui/core';
-
+import { GridList, GridListTile, GridListTileBar, useMediaQuery } from '@material-ui/core';
 // MainContainer는 상세 페이지랑.. 목록에도 사용이 가능하지 않나 ?
 
 const Main = () => {
@@ -27,7 +26,7 @@ const Main = () => {
             return 4;
         }
         if(desktopMatches){
-            return 5;
+            return 4;
         }
     }
 
@@ -95,24 +94,24 @@ const Main = () => {
                     <GS.ListTitle>인기있는 영화</GS.ListTitle>
                     <GS.ViewAll>전체 보기</GS.ViewAll>
                 </GS.ListHeader>
+                {state.popular.length === 0 
+                ? 
+                <div>로딩중</div>
+                :
                 <GS.MovieContainer>
-                    {state.popular.length === 0 
-                    ? 
-                    <div>로딩중</div>
-                    :
-                    <GS.List cellHeight={'auto'} spacing={10} cols={getGridListCols()}>
-                        {state.popular.results.map((movie, i) => {
+                    <GS.List cellHeight={'auto'} spacing={20} cols={getGridListCols()}>
+                        {state.popular.results.map((movie, i)=> {
                             return (
-                                <GS.ListItem id={movie.id} key={i} onClick={e=> {
-                                    getDetail(e.currentTarget.id)
-                                }}>
-                                    <GS.ListItem posterPath={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></GS.ListItem>
-                                    <GS.ListItemTitle>{movie.title}</GS.ListItemTitle>
-                                </GS.ListItem>
-                            )
+                            <GridListTile id={movie.id} key={i} onClick={e=> {
+                                getDetail(e.currentTarget.id)
+                            }}>
+                                <img src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
+                                <GridListTileBar title={movie.title}></GridListTileBar>
+                            </GridListTile>)
                         })}
-                    </GS.List>}
+                    </GS.List>
                 </GS.MovieContainer>
+                }
             </GS.ListContainer>
             {/* 상영중인 영화 */}
             <GS.ListContainer>
@@ -120,24 +119,24 @@ const Main = () => {
                     <GS.ListTitle>상영중인 영화</GS.ListTitle>
                     <GS.ViewAll>전체 보기</GS.ViewAll>
                 </GS.ListHeader>
-                <GS.MovieContainer>
                     {state.nowPlaying.length === 0 
                     ? 
                     <div>로딩중</div>
-                    :
-                    <GS.List cellHeight={'auto'} spacing={10} cols={getGridListCols()}>
-                        {state.nowPlaying.results.map((movie, i) => {
-                            return(
-                                <GS.ListItem id={movie.id} key={i} onClick={e=> {
-                                    getDetail(e.currentTarget.id)
-                                }}>
-                                    <GS.ListItem posterPath={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></GS.ListItem>
-                                    <GS.ListItemTitle>{movie.title}</GS.ListItemTitle>
-                                </GS.ListItem>
-                            )
+                    : 
+                    <GS.MovieContainer>
+                        <GS.List cellHeight={'auto'} spacing={20} cols={getGridListCols()}>
+                        {state.nowPlaying.results.map((movie, i)=> {
+                            return (
+                            <GridListTile id={movie.id} key={i} onClick={e=> {
+                                getDetail(e.currentTarget.id)
+                            }}>
+                                <img src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
+                                <GridListTileBar title={movie.title}></GridListTileBar>
+                            </GridListTile>)
                         })}
-                    </GS.List>}
-                </GS.MovieContainer>
+                        </GS.List>
+                    </GS.MovieContainer>
+                    }
             </GS.ListContainer>
             {/* 별점높은 영화 */}
             <GS.ListContainer>
@@ -145,24 +144,24 @@ const Main = () => {
                     <GS.ListTitle>별점높은 영화</GS.ListTitle>
                     <GS.ViewAll>전체 보기</GS.ViewAll>
                 </GS.ListHeader>
+                {state.topRated.length === 0 
+                ? 
+                <div>로딩중</div>
+                :
                 <GS.MovieContainer>
-                    {state.topRated.length === 0 
-                    ? 
-                    <div>로딩중</div>
-                    :
-                    <GS.List cellHeight={'auto'} spacing={10} cols={getGridListCols()}>
-                        {state.topRated.results.map((movie, i) => {
-                            return(
-                                <GS.ListItem id={movie.id} key={i} onClick={e=> {
-                                    getDetail(e.currentTarget.id)
-                                }}>
-                                    <GS.ListItem posterPath={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></GS.ListItem>
-                                    <GS.ListItemTitle>{movie.title}</GS.ListItemTitle>
-                                </GS.ListItem>
-                            )
+                    <GS.List cellHeight={'auto'} spacing={20} cols={getGridListCols()}>
+                        {state.topRated.results.map((movie, i)=> {
+                            return (
+                            <GridListTile id={movie.id} key={i} onClick={e=> {
+                                getDetail(e.currentTarget.id)
+                            }}>
+                                <img src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
+                                <GridListTileBar title={movie.title}></GridListTileBar>
+                            </GridListTile>)
                         })}
-                    </GS.List >}
+                    </GS.List>
                 </GS.MovieContainer>
+                }
             </GS.ListContainer>
         </S.MainContainer>
     );
