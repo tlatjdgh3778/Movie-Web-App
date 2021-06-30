@@ -24,8 +24,8 @@ function App() {
   const themeBreakPoint = createMuiTheme({
     breakpoints: {
       values: {
-        mobile: '(max-width:400px)',
-        tablet: '(min-width:401px) and (max-width:768px)',
+        mobile: '(max-width:480px)',
+        tablet: '(min-width:481px) and (max-width:768px)',
         laptop: '(min-width:769px) and (max-width:1024px)',
         desktop: '(min-width:1025px)',
       },
