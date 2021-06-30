@@ -1,33 +1,11 @@
 import React, { useContext } from 'react';
 import * as GS from 'style/componentstyle';
-import { GridListTile, GridListTileBar, useMediaQuery } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+import { GridListTile, GridListTileBar } from '@material-ui/core';
 import { MovieContext } from 'contexts/movie';
 import { nullImg, youtubeLink, thumbnail } from 'utils/constants';
 
-const DetailVideo = () => {
+const DetailVideo = ({ getGridListCols }) => {
     const { video } = useContext(MovieContext).state;
-
-    const theme = useTheme();
-    const mobileMatches = useMediaQuery(theme.breakpoints.values.mobile);
-    const tabletMatches = useMediaQuery(theme.breakpoints.values.tablet);
-    const laptopMatches = useMediaQuery(theme.breakpoints.values.laptop);
-    const desktopMatches = useMediaQuery(theme.breakpoints.values.desktop);
-
-    const getGridListCols = () => {
-        if(mobileMatches){
-            return 2;
-        }
-        if(tabletMatches){
-            return 3;
-        }
-        if(laptopMatches){
-            return 4;
-        }
-        if(desktopMatches){
-            return 5;
-        }
-    }
 
     const toYoutube = link => {
         const win = window.open(link, "_blank");
