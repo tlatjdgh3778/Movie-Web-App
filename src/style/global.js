@@ -12,7 +12,32 @@ body {
     color: ${(props) => props.theme.color.fontColor};
     background-color: ${(props) => props.theme.color.bgColor};
 }
+.MuiGridList-root {
+    height: 25vw;
 
+    ${(props) => props.theme.device.Tablet} {
+        height: 55vw;
+    }
+
+    ${(props) => props.theme.device.Mobile} {
+        height: 70vw;
+    }
+}
+.MuiGridListTile-imgFullWidth {
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.MuiGridListTile-imgFullHeight {
+    cursor: pointer;
+}
+img {
+    width: 100%;
+    height: 100%;
+}
 `;
 
 export default GlobalStyle; 
