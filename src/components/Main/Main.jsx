@@ -54,7 +54,7 @@ const Main = () => {
             return 4;
         }
         if(desktopMatches){
-            return 4;
+            return 5;
         }
     }
 
