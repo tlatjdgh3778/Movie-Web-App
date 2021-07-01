@@ -70,13 +70,16 @@ const Main = () => {
         await setVideo(video);
         history.push(`/Detail/${id}`);
     };
+    const toPage = async (page) => {
+        history.push(`/${page}`);
+    }
 
     return(
         <S.MainContainer>
             <MainIntro getDetail={getDetail}></MainIntro>
-            <MainPopular getDetail={getDetail} getGridListCols={getGridListCols}></MainPopular>
-            <MainNowPlaying getDetail={getDetail} getGridListCols={getGridListCols}></MainNowPlaying>
-            <MainTopRated getDetail={getDetail} getGridListCols={getGridListCols}></MainTopRated>
+            <MainPopular toPage={toPage} getDetail={getDetail} getGridListCols={getGridListCols}></MainPopular>
+            <MainNowPlaying toPage={toPage} getDetail={getDetail} getGridListCols={getGridListCols}></MainNowPlaying>
+            <MainTopRated toPage={toPage} getDetail={getDetail} getGridListCols={getGridListCols}></MainTopRated>
         </S.MainContainer>
     );
 }
