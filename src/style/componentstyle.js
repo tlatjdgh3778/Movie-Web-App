@@ -34,10 +34,12 @@ const ListHeader = styled.div`
 `;
 const ListTitle = styled.div`
     color: ${(props) => props.theme.color.fontColor};
+    padding: 0 10px;
 `;
 const ViewAll = styled.div`
     cursor: pointer;
     color: ${(props) => props.theme.color.fontColor};
+    padding: 0 10px;
     
     &:hover {
         transition: all 0.2s ease;
@@ -58,49 +60,4 @@ const List = styled(GridList)`
     transform: translateZ(0);
 `;
 
-const ListItem = styled(GridListTile)`
-    cursor: pointer;
-    /* width: 20vw; */
-    height: 28vw;
-    background-image: url(${({ $posterPath }) => $posterPath });
-    background-size: cover;
-    /* background-position: center center; */
-    background-repeat: no-repeat;
-
-    &:hover {
-    }
-
-    ${(props) => props.theme.device.Tablet}{
-        position: relative;
-        height: 100%;
-        width: 45vw;
-    }
-`;
-
-const ListItemVideo = styled(GridListTile)`
-    cursor: pointer;
-    /* width: 20vw; */
-    height: 10vw;
-    background-image: url(${({ $posterPath }) => $posterPath });
-    background-size: contain;
-    /* background-position: center center; */
-    background-repeat: no-repeat;
-
-    &:hover {
-    }
-
-    ${(props) => props.theme.device.Tablet}{
-        position: relative;
-        height: 100%;
-        width: 45vw;
-    }
-`;
-
-const ListItemTitle = styled.div`
-    color: white;
-`;
-// 여기까지
-
-
-
-export { ListContainer, ListHeader, ListTitle, ViewAll, MovieContainer, List, ListItem, ListItemTitle, BackgroundImage, ListItemVideo };
+export { ListContainer, ListHeader, ListTitle, ViewAll, MovieContainer, List, BackgroundImage };
