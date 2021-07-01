@@ -10,12 +10,14 @@ const fontSize = {
 const deviceSize = {
     Mobile: '480px',
     Tablet: '768px',
+    LapTop: '1024px',
     Desktop: '1440px',
 }
 
 const device = {
     Mobile: `@media (max-width: ${deviceSize.Mobile})`,
     Tablet: `@media (max-width: ${deviceSize.Tablet})`,
+    LapTop: `@media (max-width: ${deviceSize.LapTop})`,
     Desktop: `@media (max-width: ${deviceSize.Desktop})`,
 }
 
