@@ -18,8 +18,13 @@ img {
 }
 
 .MuiGridList-root {
+    margin: 0 !important;
     height: 25vw;
     width: 100%;
+
+    ${(props) => props.theme.device.LapTop} {
+        height: 40vw;
+    }
 
     ${(props) => props.theme.device.Tablet} {
         height: 55vw;
@@ -45,6 +50,9 @@ img {
     position: relative;
     transform: translateY(-50%);
     cursor: pointer;
+}
+.MuiGridListTileBar-root {
+    color: black;
 }
 `;
 
