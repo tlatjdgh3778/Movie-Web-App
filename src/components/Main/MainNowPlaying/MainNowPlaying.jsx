@@ -4,14 +4,16 @@ import * as GS from 'style/componentstyle';
 import { backdropImg, nullImg } from 'utils/constants';
 import { GridListTile, GridListTileBar } from '@material-ui/core';
 
-const MainNowPlaying = ({ getDetail, getGridListCols }) => {
+const MainNowPlaying = ({ toPage, getDetail, getGridListCols }) => {
     const { nowPlaying } = useContext(MovieContext).state;
 
     return(
         <GS.ListContainer>
                 <GS.ListHeader>
                     <GS.ListTitle>상영중인 영화</GS.ListTitle>
-                    <GS.ViewAll>전체 보기</GS.ViewAll>
+                    <GS.ViewAll id="NowPlaying" onClick={e => {
+                    toPage(e.currentTarget.id)
+                }}>전체 보기</GS.ViewAll>
                 </GS.ListHeader>
                     {nowPlaying.length === 0 
                     ? 

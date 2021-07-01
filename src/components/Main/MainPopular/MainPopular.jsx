@@ -4,14 +4,16 @@ import * as GS from 'style/componentstyle';
 import { backdropImg, nullImg } from 'utils/constants';
 import { GridListTile, GridListTileBar } from '@material-ui/core';
 
-const MainPopular = ({ getDetail, getGridListCols }) => {
+const MainPopular = ({ toPage, getDetail, getGridListCols }) => {
     const { popular } = useContext(MovieContext).state;
 
     return(
         <GS.ListContainer>
             <GS.ListHeader>
                 <GS.ListTitle>인기있는 영화</GS.ListTitle>
-                <GS.ViewAll>전체 보기</GS.ViewAll>
+                <GS.ViewAll id="Popular" onClick={e => {
+                    toPage(e.currentTarget.id)
+                }}>전체 보기</GS.ViewAll>
             </GS.ListHeader>
             {popular.length === 0 
             ? 

@@ -4,14 +4,16 @@ import * as GS from 'style/componentstyle';
 import { backdropImg, nullImg } from 'utils/constants';
 import { GridListTile, GridListTileBar } from '@material-ui/core';
 
-const MainTopRated = ({ getDetail, getGridListCols }) => {
+const MainTopRated = ({ toPage, getDetail, getGridListCols }) => {
     const { topRated } = useContext(MovieContext).state;
 
     return(
         <GS.ListContainer>
             <GS.ListHeader>
                 <GS.ListTitle>별점높은 영화</GS.ListTitle>
-                <GS.ViewAll>전체 보기</GS.ViewAll>
+                <GS.ViewAll id="TopRated" onClick={e => {
+                    toPage(e.currentTarget.id)
+                }}>전체 보기</GS.ViewAll>
             </GS.ListHeader>
             {topRated.length === 0 
             ? 
