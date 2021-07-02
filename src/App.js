@@ -63,7 +63,7 @@ function App() {
               <Header></Header>
               <Switch>
                 <Route exact path="/">
-                  <Main></Main>
+                  <Main getGridListCols={getGridListCols}></Main>
                 </Route>
                 <Route exact path="/Popular">
                   <Popular getGridListCols={getGridListCols}></Popular>
