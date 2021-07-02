@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 * {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', 'Roboto', sans-serif !important;
     margin: 0;
     padding: 0;
 }
