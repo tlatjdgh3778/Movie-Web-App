@@ -1,35 +1,18 @@
 import React, { useState, useContext } from 'react';
-import styled from 'styled-components';
 import { ModalStateContext } from 'contexts/modal';
 import { ResultContext } from 'contexts/results';
-import { AppBar, Typography, Toolbar, IconButton, InputBase } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+import { Typography, IconButton, InputBase } from '@material-ui/core';
 import Brightness4OutlinedIcon from '@material-ui/icons/Brightness4Outlined';
 import { getSearchMovie } from 'apis/getMovieData';
 import { useHistory } from 'react-router-dom';
-
-const HeaderContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    border: 1px solid black;
-    height: 2rem;
-`;
-
-const SearchContainer = styled.div`
-    display: flex;
-    align-items: center;
-    border: 1px solid black;
-`;
+import * as S from './Header.style';
 
 const Header = () => {
     const history = useHistory();
 
     const { state, actions } = useContext(ModalStateContext);
     const { results } = useContext(ResultContext).state;
-    const { setResults } = useContext(ResultContext).actions;
+    const { setResults, setSearchValue } = useContext(ResultContext).actions;
 
     const [value, setValue] = useState("");
 
@@ -39,34 +22,40 @@ const Header = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const search = await getSearchMovie(value);
-        setResults();
-        setResults(search);
-        history.push("/Results");
+        if(value.length !== 0) {
+            const search = await getSearchMovie(value);
+            setResults(search);
+            setSearchValue(value);
+            if(history.location.pathname !== "/Results"){
+                history.push("/Results");
+            }
+        }else{
+            console.log("한 글자 이상 입력해주세요");
+        }
     };
 
     const onChange = e => {
-        setValue(e.target.value)
+        setValue(e.target.value);
     };
 
     return(
-        <HeaderContainer>
+        <S.HeaderContainer>
             <IconButton onClick={menuOpen}>
-                <MenuIcon/>
+                <S.CustomMenuIcon/>
             </IconButton>
             <Typography>Movie Web</Typography>
-            <SearchContainer>
-                <SearchIcon/>
+            <S.SearchContainer>
+                <S.CustomSearchIcon/>
                 <form onSubmit={onSubmit}>
-                    <InputBase
+                    <S.CustomInputBase
                     placeholder="Search.."
                     onChange={onChange}
                     value={value}
                     >
-                    </InputBase>
+                    </S.CustomInputBase>
                 </form>
-            </SearchContainer>
-        </HeaderContainer>
+            </S.SearchContainer>
+        </S.HeaderContainer>
     );
 }
 
