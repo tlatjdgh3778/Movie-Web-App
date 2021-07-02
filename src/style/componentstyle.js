@@ -58,6 +58,32 @@ const List = styled(GridList)`
     flex-wrap: nowrap;
     overflow-y: hidden;
     transform: translateZ(0);
+    margin: 0 !important;
+    height: 25vw;
+    width: 100%;
+
+    ${(props) => props.theme.device.LapTop} {
+        height: 40vw;
+    }
+
+    ${(props) => props.theme.device.Tablet} {
+        height: 55vw;
+    }
+
+    ${(props) => props.theme.device.Mobile} {
+        height: 70vw;
+    }
+`;
+const ListMovie = styled(GridList)`
+    padding: 3vw;
 `;
 
-export { ListContainer, ListHeader, ListTitle, ViewAll, MovieContainer, List, BackgroundImage };
+const ListMovieTitle = styled.div`
+    text-align: center;
+    font-weight: 700;
+    padding: 2vw;
+    font-size: 3vw;
+    color: ${(props) => props.theme.color.fontColor};
+`;
+
+export { ListContainer, ListHeader, ListTitle, ViewAll, MovieContainer, List, BackgroundImage, ListMovie, ListMovieTitle };
