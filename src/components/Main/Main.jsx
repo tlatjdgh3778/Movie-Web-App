@@ -3,8 +3,6 @@ import { MovieContext } from 'contexts/movie';
 import { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo } from 'apis/getMovieData';
 import { useHistory } from 'react-router-dom';
 import * as S from './Main.style';
-import { useTheme } from '@material-ui/core/styles';
-import { useMediaQuery } from '@material-ui/core';
 import MainIntro from './MainIntro/MainIntro';
 import MainPopular from './MainPopular/MainPopular';
 import MainNowPlaying from './MainNowPlaying/MainNowPlaying';
@@ -13,10 +11,9 @@ import MainTopRated from './MainTopRated/MainTopRated';
 
 // MainContainer는 상세 페이지랑.. 목록에도 사용이 가능하지 않나 ?
 
-const Main = () => {
+const Main = ({ getGridListCols }) => {
     const { setPopular, setNowPlaying, setTopRated, setTrend, setDetail, setCredit, setRecommendation, setVideo } = useContext(MovieContext).actions;
     const history = useHistory();
-    const theme = useTheme();
 
     const random = Math.floor(Math.random() * 10);
 
@@ -38,26 +35,6 @@ const Main = () => {
         fetchData();
     }, []);
 
-    const mobileMatches = useMediaQuery(theme.breakpoints.values.mobile);
-    const tabletMatches = useMediaQuery(theme.breakpoints.values.tablet);
-    const laptopMatches = useMediaQuery(theme.breakpoints.values.laptop);
-    const desktopMatches = useMediaQuery(theme.breakpoints.values.desktop);
-
-    const getGridListCols = () => {
-        if(mobileMatches){
-            return 2;
-        }
-        if(tabletMatches){
-            return 3;
-        }
-        if(laptopMatches){
-            return 4;
-        }
-        if(desktopMatches){
-            return 5;
-        }
-    }
-
     const getDetail = async (id) => {
         const detail = await getMovieDetail(id);
         const credit = await getMovieCredit(id);
@@ -70,6 +47,7 @@ const Main = () => {
         await setVideo(video);
         history.push(`/Detail/${id}`);
     };
+
     const toPage = async (page) => {
         history.push(`/${page}`);
     }

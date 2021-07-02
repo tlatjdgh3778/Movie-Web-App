@@ -1,33 +1,11 @@
 import React, { useContext } from 'react';
 import { MovieContext } from 'contexts/movie';
-import { useTheme } from '@material-ui/core/styles';
-import { GridListTile, GridListTileBar, useMediaQuery } from '@material-ui/core';
+import { GridListTile, GridListTileBar } from '@material-ui/core';
 import * as GS from 'style/componentstyle';
 import { backdropImg, nullImg } from 'utils/constants';
 
-const Popular = () => {
+const Popular = ({ getGridListCols }) => {
     const { popular } = useContext(MovieContext).state;
-    const theme = useTheme();
-
-    const mobileMatches = useMediaQuery(theme.breakpoints.values.mobile);
-    const tabletMatches = useMediaQuery(theme.breakpoints.values.tablet);
-    const laptopMatches = useMediaQuery(theme.breakpoints.values.laptop);
-    const desktopMatches = useMediaQuery(theme.breakpoints.values.desktop);
-
-    const getGridListCols = () => {
-        if(mobileMatches){
-            return 2;
-        }
-        if(tabletMatches){
-            return 2;
-        }
-        if(laptopMatches){
-            return 3;
-        }
-        if(desktopMatches){
-            return 4;
-        }
-    }
 
     return(
         <>

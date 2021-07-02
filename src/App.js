@@ -12,8 +12,8 @@ import Footer from 'components/Footer/Footer';
 import Results from 'components/Results/Results';
 import Detail from 'components/Detail/Detail';
 import Menu from 'components/Menu/Menu';
-import { StylesProvider, ThemeProvider as MuiThemeProvider } from '@material-ui/core';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { StylesProvider, ThemeProvider as MuiThemeProvider, useMediaQuery } from '@material-ui/core';
+import { createMuiTheme, useTheme } from '@material-ui/core/styles';
 import { ModalStateProvider } from 'contexts/modal';
 import { ResultProvider } from 'contexts/results';
 import { MovieProvider } from 'contexts/movie';
@@ -31,7 +31,25 @@ function App() {
       },
     },
   });
-  
+  const mobileMatches = useMediaQuery('(max-width:480px)');
+  const tabletMatches = useMediaQuery('(min-width:481px) and (max-width:768px)');
+  const laptopMatches = useMediaQuery('(min-width:769px) and (max-width:1024px)');
+  const desktopMatches = useMediaQuery('(min-width:1025px)');
+
+  const getGridListCols = () => {
+      if(mobileMatches){
+          return 2;
+      }
+      if(tabletMatches){
+          return 3;
+      }
+      if(laptopMatches){
+          return 4;
+      }
+      if(desktopMatches){
+          return 5;
+      }
+  }
   return (
     <>
     <StylesProvider injectFirst>
@@ -48,22 +66,22 @@ function App() {
                   <Main></Main>
                 </Route>
                 <Route exact path="/Popular">
-                  <Popular></Popular>
+                  <Popular getGridListCols={getGridListCols}></Popular>
                 </Route>
                 <Route exact path="/NowPlaying">
-                  <NowPlaying></NowPlaying>
+                  <NowPlaying getGridListCols={getGridListCols}></NowPlaying>
                 </Route>
                 <Route exact path="/TopRated">
-                  <TopRated></TopRated>
+                  <TopRated getGridListCols={getGridListCols}></TopRated>
                 </Route>
                 <Route exact path="/Likes">
-                  <Likes></Likes>
+                  <Likes getGridListCols={getGridListCols}></Likes>
                 </Route>
                 <Route exact path="/Results">
-                  <Results></Results>
+                  <Results getGridListCols={getGridListCols}></Results>
                 </Route>
                 <Route path="/Detail">
-                  <Detail></Detail>
+                  <Detail getGridListCols={getGridListCols}></Detail>
                 </Route>
               </Switch>
               <Menu></Menu>
