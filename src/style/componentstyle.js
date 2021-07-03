@@ -26,29 +26,42 @@ const BackgroundImage = css`
 // 영화 리스트 재활용 가능..
 const ListContainer = styled.div`
     background-color: ${(props) => props.theme.color.listBgColor};
+    padding: 0 2rem;
 `;
 const ListHeader = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 1vw;
+    align-items: center;
+    padding: 1rem 0;
 `;
+
 const ListTitle = styled.div`
     color: ${(props) => props.theme.color.fontColor};
-    padding: 0 10px;
+    font-weight: 700;
+    font-size: ${(props) => props.theme.fontSize.xl};
+
+    ${(props) => props.theme.device.Tablet} {
+        font-size: ${(props) => props.theme.fontSize.md};
+    }
+
 `;
 const ViewAll = styled.div`
     cursor: pointer;
     color: ${(props) => props.theme.color.fontColor};
-    padding: 0 10px;
-    
+    font-weight: 700;
+
     &:hover {
         transition: all 0.2s ease;
         color: ${(props) => props.theme.color.fontHoverColor};
     }
+
+    ${(props) => props.theme.device.Tablet} {
+        font-size: ${(props) => props.theme.fontSize.sm};
+    }
+
 `;
 
 const MovieContainer = styled.div`
-    padding: 1vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
