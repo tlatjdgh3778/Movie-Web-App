@@ -29,7 +29,7 @@ const Title = styled.div`
     position: relative;
     font-size: 5vw;
     padding-top: 10vw;
-    padding-left: 5vw;
+    padding-left: 4vw;
     font-weight: 700;
     color: ${(props) => props.theme.color.fontColor};
 `;
@@ -37,13 +37,13 @@ const Title = styled.div`
 const Tagline = styled.div`
     position: relative;
     font-size: 3vw;
-    padding-left: 5vw;
+    padding-left: 4vw;
 `;
 
 const MoreBtn = styled(Button)`
     color: ${(props) => props.theme.color.fontColor};
     font-size: 3.5vw;
-    margin-left: 5vw;
+    margin-left: 4vw;
     position: absolute;
     bottom: 0.5vw;
 
