@@ -3,23 +3,27 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 :root {
-    --scrollbarThumb-color: #666;
-    --scrollbarBtn-color: #666;
-    --scrollbarTrack-color: black;
-    --scrollbarHover-color: #121212;
+    --scrollbarThumb-color: #403d3d;
+    --scrollbarBtn-color: #403d3d;
+    --scrollbarTrack-color: #262424;
+    --scrollbarHover-color: #6b6666;
 }
 * {
     font-family: 'Noto Sans KR', 'Roboto', sans-serif !important;
     margin: 0;
     padding: 0;
 
+    /* scroll-behavior: smooth; */
+
     &::-webkit-scrollbar {
-        width: 15px;
-        height: 10px;
+        width: 12px;
+        height: 12px;
     }
     &::-webkit-scrollbar-thumb {
         background-color: var(--scrollbarThumb-color); 
         border-radius: 10px;
+        background-clip: padding-box;
+        border: 3px solid transparent;
 
         &:hover {
             background-color: var(--scrollbarHover-color);
