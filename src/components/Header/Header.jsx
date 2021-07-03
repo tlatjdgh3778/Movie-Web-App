@@ -43,7 +43,7 @@ const Header = () => {
             <IconButton onClick={menuOpen}>
                 <S.CustomMenuIcon/>
             </IconButton>
-            <Typography>Movie Web</Typography>
+            <S.Title>Movie Web</S.Title>
             <S.SearchContainer>
                 <S.CustomSearchIcon/>
                 <form onSubmit={onSubmit}>
