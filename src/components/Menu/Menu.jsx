@@ -1,36 +1,8 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
 import { ModalStateContext } from 'contexts/modal';
+import { IconButton } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
-
-const Background = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0,0,0,0.50);
-    z-index: 0;
-`;
-
-const MenuContent = styled.div`
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    left: 50%;
-    top: 40%;
-    transform: transition(-50%, -50%);
-    color: ${(props) => props.theme.color.bgColor};
-    border: 1px solid white;
-`;
-
-const CloseBtn = styled.button`
-    position: absolute;
-    right: 0;
-    padding: 1rem;
-    margin: 1rem;
-    color: white;
-`;
+import * as S from './Menu.style';
 
 const Menu = () => {
     const { state, actions } = useContext(ModalStateContext);
@@ -42,17 +14,18 @@ const Menu = () => {
     return(
         <>
             {state.isOpen ? 
-            <Background>
-                <CloseBtn onClick={closeMenu}>X</CloseBtn>
-                <MenuContent>
-                    <NavLink to="/">메인화면</NavLink>
-                    <NavLink to="/Popular">인기영화</NavLink>
-                    <NavLink to="/TopRated">좋은평가</NavLink>
-                    <NavLink to="/NowPlaying">상영중</NavLink>
-                    <NavLink to="/Likes">좋아요</NavLink>
-                    <div>다크모드</div>
-                </MenuContent>
-            </Background> : null }
+            <S.Background>
+                <S.CustomIconButton onClick={closeMenu}>
+                    <S.CloseBtn></S.CloseBtn>
+                </S.CustomIconButton>
+                <S.MenuContent>
+                    <NavLink to="/"><S.MenuItem>메인화면</S.MenuItem></NavLink>
+                    <NavLink to="/Popular"><S.MenuItem>인기영화</S.MenuItem></NavLink>
+                    <NavLink to="/TopRated"><S.MenuItem>좋은평가</S.MenuItem></NavLink>
+                    <NavLink to="/NowPlaying"><S.MenuItem>상영중</S.MenuItem></NavLink>
+                    <NavLink to="/Likes"><S.MenuItem>좋아요</S.MenuItem></NavLink>
+                </S.MenuContent>
+            </S.Background> : null }
         </>
     );
 }
