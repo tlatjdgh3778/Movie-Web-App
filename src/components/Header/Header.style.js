@@ -37,7 +37,7 @@ const CustomSearchIcon = styled(SearchIcon)`
 
 const Title = styled(Typography)`
     font-weight: 700;
-
+    padding: 0 1rem;
 `;
 
 export { HeaderContainer, SearchContainer, CustomMenuIcon, CustomSearchIcon, CustomInputBase, Title };
