@@ -42,7 +42,7 @@ const Tagline = styled.div`
 
 const MoreBtn = styled(Button)`
     color: ${(props) => props.theme.color.fontColor};
-    font-size: 3vw;
+    font-size: 3.5vw;
     margin-left: 5vw;
     position: absolute;
     bottom: 0.5vw;
