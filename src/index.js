@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import ScrollTop from 'hooks/ScrollTop'; 
+import ScrollTop from 'components/Scroll/ScrollTop'; 
 
 ReactDOM.render(
   <BrowserRouter>
