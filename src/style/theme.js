@@ -38,7 +38,8 @@ const lightMode = {
     color: {
         fontColor: '#121212',
         bgColor: '#fff',
-        fontHoverColor: '#dbd9d3'
+        fontHoverColor: '#dbd9d3',
+        listBgColor: '#0d0c0c',
     }
 }
 
