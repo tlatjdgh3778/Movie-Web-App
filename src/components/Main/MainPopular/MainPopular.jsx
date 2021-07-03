@@ -15,10 +15,6 @@ const MainPopular = ({ toPage, getDetail, getGridListCols }) => {
                     toPage(e.currentTarget.id)
                 }}>전체 보기</GS.ViewAll>
             </GS.ListHeader>
-            {popular.length === 0 
-            ? 
-            <div>로딩중</div>
-            :
             <GS.MovieContainer>
                 <GS.List cellHeight={'auto'} spacing={20} cols={getGridListCols()}>
                     {popular.results.map((movie, i)=> {
@@ -29,10 +25,10 @@ const MainPopular = ({ toPage, getDetail, getGridListCols }) => {
                             <img src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
                             <GridListTileBar title={movie.title}></GridListTileBar>
                         </GridListTile>)
-                    })}
+                    })
+                }
                 </GS.List>
             </GS.MovieContainer>
-            }
         </GS.ListContainer>
     );
 }
