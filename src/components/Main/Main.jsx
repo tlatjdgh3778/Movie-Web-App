@@ -7,14 +7,13 @@ import MainIntro from './MainIntro/MainIntro';
 import MainPopular from './MainPopular/MainPopular';
 import MainNowPlaying from './MainNowPlaying/MainNowPlaying';
 import MainTopRated from './MainTopRated/MainTopRated';
-
-
-// MainContainer는 상세 페이지랑.. 목록에도 사용이 가능하지 않나 ?
+import ReactLoading from 'react-loading';
 
 const Main = ({ getGridListCols }) => {
     const { setPopular, setNowPlaying, setTopRated, setTrend, setDetail, setCredit, setRecommendation, setVideo } = useContext(MovieContext).actions;
     const history = useHistory();
-
+    const { state } = useContext(MovieContext);
+    
     const random = Math.floor(Math.random() * 10);
 
     useEffect(() => {
@@ -51,7 +50,11 @@ const Main = ({ getGridListCols }) => {
     const toPage = async (page) => {
         history.push(`/${page}`);
     }
+    console.log(state.detail.length);
 
+    if(state.detail.length === 0) {
+        return <ReactLoading type={"spin"} color="#fff" className="loading"/>
+    }
     return(
         <S.MainContainer>
             <MainIntro getDetail={getDetail}></MainIntro>
