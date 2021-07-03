@@ -14,7 +14,7 @@ const DetailRecommendation = ({ getDetail, getGridListCols }) => {
                 <GS.ListHeader>
                     <GS.ListTitle>추천 영화</GS.ListTitle>
                 </GS.ListHeader>
-                {recommendation.total_results === 0 ? <div>추천 영화가 없습니다.</div> 
+                {recommendation.total_results === 0 ? <GS.ExceptionMsg>추천 영화가 없습니다..</GS.ExceptionMsg> 
                 :
                 <>
                 <GS.MovieContainer>

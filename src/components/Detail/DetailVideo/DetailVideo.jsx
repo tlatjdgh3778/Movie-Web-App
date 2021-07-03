@@ -18,7 +18,7 @@ const DetailVideo = ({ getGridListCols }) => {
         <GS.ListHeader>
             <GS.ListTitle>예고편</GS.ListTitle>
         </GS.ListHeader>
-        {video.results.length === 0 ? <div>예고편이 없습니다..</div> 
+        {video.results.length === 0 ? <GS.ExceptionMsg>예고편이 없습니다..</GS.ExceptionMsg> 
         :
         <>
         <GS.MovieContainer>

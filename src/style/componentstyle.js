@@ -99,4 +99,10 @@ const ListMovieTitle = styled.div`
     color: ${(props) => props.theme.color.fontColor};
 `;
 
-export { ListContainer, ListHeader, ListTitle, ViewAll, MovieContainer, List, BackgroundImage, ListMovie, ListMovieTitle };
+const ExceptionMsg = styled.div`
+    color: ${(props) => props.theme.color.fontColor};
+    font-size: ${(props) => props.theme.fontSize.lg};
+    font-weight: 700;
+`;
+
+export { ListContainer, ListHeader, ListTitle, ViewAll, MovieContainer, List, BackgroundImage, ListMovie, ListMovieTitle, ExceptionMsg };
