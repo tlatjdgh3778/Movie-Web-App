@@ -15,10 +15,6 @@ const MainNowPlaying = ({ toPage, getDetail, getGridListCols }) => {
                     toPage(e.currentTarget.id)
                 }}>전체 보기</GS.ViewAll>
                 </GS.ListHeader>
-                    {nowPlaying.length === 0 
-                    ? 
-                    <div>로딩중</div>
-                    : 
                     <GS.MovieContainer>
                         <GS.List cellHeight={'auto'} spacing={20} cols={getGridListCols()}>
                         {nowPlaying.results.map((movie, i)=> {
@@ -32,7 +28,6 @@ const MainNowPlaying = ({ toPage, getDetail, getGridListCols }) => {
                         })}
                         </GS.List>
                     </GS.MovieContainer>
-                    }
         </GS.ListContainer>
     );
 }
