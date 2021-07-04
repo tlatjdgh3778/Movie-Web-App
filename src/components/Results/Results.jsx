@@ -30,7 +30,7 @@ const Results = ({ getGridListCols }) => {
     if(results.total_results === 0){
         return(
             <>
-                <div>검색 결과가 없습니다.</div>
+                <GS.ExceptionMsg>검색 결과가 없습니다.</GS.ExceptionMsg>
             </>
         );
     }else{
