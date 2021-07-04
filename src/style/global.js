@@ -86,6 +86,18 @@ a {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.MuiRating-iconFilled {
+    color: ${(props) => props.theme.color.fontSubColor};
+}
+
+.MuiRating-iconEmpty {
+    color: ${(props) => props.theme.color.listBgColor};
+}
+
+.MuiRating-root {
+    font-size: 3vw;
+}
 `;
 
 export default GlobalStyle; 
