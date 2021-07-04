@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { MovieContext } from 'contexts/movie';
 import Rating from '@material-ui/lab/Rating';
 import { useMediaQuery } from '@material-ui/core';
@@ -8,6 +8,7 @@ import { backdropImg } from 'utils/constants';
 
 const DetailIntro = () => {
     const { detail } = useContext(MovieContext).state;
+    const [like, setLike] = useState(false);
 
     const theme = useTheme();
     const mobileMatches = useMediaQuery(theme.breakpoints.values.mobile);
@@ -19,12 +20,13 @@ const DetailIntro = () => {
             id: detail.id,
             posterPath: detail.poster_path,
         }));
+        setLike(true);
     }
 
     const deleteLocal = () => {
         localStorage.removeItem(detail.id);
+        setLike(false);
     }
-
     if(tabletMatches || mobileMatches) {
         return (
             <>
@@ -47,8 +49,8 @@ const DetailIntro = () => {
                     {detail.genres.map((genre, i) => {
                         return <S.Genre key={i}>{genre.name} </S.Genre>
                     })}
-                    <S.LikeBtn onClick={addLocal}>
-                        <S.CustomAddIcon />
+                    <S.LikeBtn onClick={like ? deleteLocal : addLocal}>
+                        {localStorage.getItem(detail.id) ? <S.CustomDoneIcon /> : <S.CustomAddIcon />}
                         <span>마음에 들어요</span>
                     </S.LikeBtn>
                 </S.MovieContentContainer>
@@ -72,8 +74,8 @@ const DetailIntro = () => {
                         {detail.genres.map((genre, i) => {
                             return <S.Genre key={i}>{genre.name} </S.Genre>
                         })}
-                        <S.LikeBtn onClick={addLocal}>
-                            <S.CustomAddIcon />
+                        <S.LikeBtn onClick={like ? deleteLocal : addLocal}>
+                            {localStorage.getItem(detail.id) ? <S.CustomDoneIcon /> : <S.CustomAddIcon />}
                             <span>마음에 들어요</span>
                         </S.LikeBtn>
                     </S.MovieContentContainer>
