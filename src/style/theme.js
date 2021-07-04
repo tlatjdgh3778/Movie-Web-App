@@ -26,6 +26,7 @@ const darkMode = {
     device,
     color: {
         fontColor: '#fff',
+        fontSubColor: 'rgba(255, 255, 255, 0.8)',
         bgColor: '#121212',
         fontHoverColor: '#c9c9c9',
         listBgColor: '#0d0c0c',
