@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 const FooterContainer = styled.div`
     border: 1px solid black;
@@ -8,4 +9,14 @@ const FooterContainer = styled.div`
     height: 2rem;
 `;
 
-export { FooterContainer };
+const CustomGithub = styled(GitHubIcon)`
+    color: ${(props) => props.theme.color.fontColor};
+    cursor: pointer;
+    margin-left: 10px;
+
+    &:hover {
+        color: ${(props) => props.theme.color.fontHoverColor};
+    }
+`;
+
+export { FooterContainer, CustomGithub };
