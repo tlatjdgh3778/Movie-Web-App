@@ -1,15 +1,13 @@
 import styled, { css } from 'styled-components';
-import { Button, GridList, GridListTile, GridListTileBar } from '@material-ui/core';
+import { GridList } from '@material-ui/core';
 
 const BackgroundImage = css`
     background-image: url(${({ backdropPath }) => backdropPath});
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    transition: all 0.2s ease 0s;
-    /* display: inline-block; */
+    /* transition: all 0.1s ease 0s; */
     position: relative;
-    /* inset: 0px; */
 
     &::before {
         content: "";
