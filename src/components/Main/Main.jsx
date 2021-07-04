@@ -50,7 +50,6 @@ const Main = ({ getGridListCols }) => {
     const toPage = async (page) => {
         history.push(`/${page}`);
     }
-    console.log(state.detail.length);
 
     if(state.detail.length === 0) {
         return <ReactLoading type={"spin"} color="#fff" className="loading"/>
