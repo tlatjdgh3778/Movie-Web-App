@@ -13,7 +13,7 @@ import Results from 'components/Results/Results';
 import Detail from 'components/Detail/Detail';
 import Menu from 'components/Menu/Menu';
 import { StylesProvider, ThemeProvider as MuiThemeProvider, useMediaQuery } from '@material-ui/core';
-import { createMuiTheme, useTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { ModalStateProvider } from 'contexts/modal';
 import { ResultProvider } from 'contexts/results';
 import { MovieProvider } from 'contexts/movie';
