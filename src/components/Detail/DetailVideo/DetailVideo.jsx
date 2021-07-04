@@ -28,7 +28,7 @@ const DetailVideo = ({ getGridListCols }) => {
                         <GridListTile key={i} onClick={() => {
                             toYoutube(youtubeLink + video.key)}
                         }>
-                            <img src={video.key === null ? nullImg : (thumbnail + video.key + "/sddefault.jpg")}></img>
+                            <img alt={video.name} src={video.key === null ? nullImg : (thumbnail + video.key + "/sddefault.jpg")}></img>
                             <GridListTileBar title={video.name}></GridListTileBar>
                         </GridListTile>
                     )

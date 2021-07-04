@@ -22,7 +22,7 @@ const MainNowPlaying = ({ toPage, getDetail, getGridListCols }) => {
                             <GridListTile id={movie.id} key={i} onClick={e=> {
                                 getDetail(e.currentTarget.id)
                             }}>
-                                <img src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
+                                <img alt={movie.title} src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
                                 <GridListTileBar title={movie.title}></GridListTileBar>
                             </GridListTile>)
                         })}

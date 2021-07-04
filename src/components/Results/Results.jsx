@@ -44,7 +44,7 @@ const Results = ({ getGridListCols }) => {
                         <GridListTile onClick={e => {
                             getDetail(e.currentTarget.id)
                         }} key={i} id={movie.id}>
-                            <img src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
+                            <img alt={movie.title} src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
                             <GridListTileBar title={movie.title}></GridListTileBar>
                         </GridListTile>
                     ))}

@@ -19,7 +19,7 @@ const DetailCast = ({ getGridListCols }) => {
                 {credit.cast.map((character, i)=> {
                     return (
                         <GridListTile key={i}>
-                            <img src={character.profile_path === null ? nullImg : (backdropImg + character.profile_path)}></img>
+                            <img alt={character.name} src={character.profile_path === null ? nullImg : (backdropImg + character.profile_path)}></img>
                             <GridListTileBar title={character.name} subtitle={character.character + " 역"}></GridListTileBar>
                         </GridListTile>
                     )

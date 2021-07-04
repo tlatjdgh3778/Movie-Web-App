@@ -24,7 +24,7 @@ const DetailRecommendation = ({ getDetail, getGridListCols }) => {
                             <GridListTile id={recommendation.id} key={i} onClick={e=> {
                                 getDetail(e.currentTarget.id)
                             }}>
-                                <img src={recommendation.poster_path === null ? nullImg : (backdropImg + recommendation.poster_path)}></img>
+                                <img alt={recommendation.title} src={recommendation.poster_path === null ? nullImg : (backdropImg + recommendation.poster_path)}></img>
                                 <GridListTileBar title={recommendation.title}></GridListTileBar>
                             </GridListTile>
                         )
