@@ -4,7 +4,7 @@ import * as S from './MainIntro.style';
 import { backdropImg } from 'utils/constants';
 
 const MainIntro = ({ getDetail }) => {
-    const { trend, detail } = useContext(MovieContext).state;
+    const { detail } = useContext(MovieContext).state;
 
     return(
         // MainIntro

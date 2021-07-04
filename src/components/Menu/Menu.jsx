@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { ModalStateContext } from 'contexts/modal';
-import { IconButton } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import * as S from './Menu.style';
 
