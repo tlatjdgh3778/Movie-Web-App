@@ -44,7 +44,7 @@ function App() {
           return 3;
       }
       if(laptopMatches){
-          return 3;
+          return 4;
       }
       if(desktopMatches){
           return 5;
