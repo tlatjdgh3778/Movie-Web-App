@@ -98,6 +98,8 @@ const ListMovieTitle = styled.div`
 `;
 
 const ExceptionMsg = styled.div`
+    padding: 1rem 0;
+    text-align: center;
     color: ${(props) => props.theme.color.fontColor};
     font-size: ${(props) => props.theme.fontSize.lg};
     font-weight: 700;
