@@ -13,6 +13,18 @@ const DetailIntro = () => {
     const mobileMatches = useMediaQuery(theme.breakpoints.values.mobile);
     const tabletMatches = useMediaQuery(theme.breakpoints.values.tablet);
 
+    const addLocal = () => {
+        localStorage.setItem(detail.id, JSON.stringify({
+            title: detail.title,
+            id: detail.id,
+            posterPath: detail.poster_path,
+        }));
+    }
+
+    const deleteLocal = () => {
+        localStorage.removeItem(detail.id);
+    }
+
     if(tabletMatches || mobileMatches) {
         return (
             <>
@@ -35,7 +47,7 @@ const DetailIntro = () => {
                     {detail.genres.map((genre, i) => {
                         return <S.Genre key={i}>{genre.name} </S.Genre>
                     })}
-                    <S.LikeBtn>
+                    <S.LikeBtn onClick={addLocal}>
                         <S.CustomAddIcon />
                         <span>마음에 들어요</span>
                     </S.LikeBtn>
@@ -60,7 +72,7 @@ const DetailIntro = () => {
                         {detail.genres.map((genre, i) => {
                             return <S.Genre key={i}>{genre.name} </S.Genre>
                         })}
-                        <S.LikeBtn>
+                        <S.LikeBtn onClick={addLocal}>
                             <S.CustomAddIcon />
                             <span>마음에 들어요</span>
                         </S.LikeBtn>
