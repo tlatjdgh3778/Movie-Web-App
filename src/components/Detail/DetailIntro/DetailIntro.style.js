@@ -83,9 +83,17 @@ const CustomStarBorderIcon = styled(StarBorderIcon)`
 const Overview = styled.div`
     font-size: 1.5vw;
     padding-top: 1vw;
-    padding-bottom: 1vw;
+
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    overflow: hidden;
+
     ${(props) => props.theme.device.Tablet}{
         font-size: 2.5vw;
+        -webkit-line-clamp: 6;
     }
 `;
 
