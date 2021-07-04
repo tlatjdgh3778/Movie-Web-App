@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { MovieContext } from 'contexts/movie';
+import Rating from '@material-ui/lab/Rating';
 import { useMediaQuery } from '@material-ui/core';
 import * as S from './DetailIntro.style';
 import { useTheme } from '@material-ui/core/styles';
@@ -15,10 +16,6 @@ const DetailIntro = () => {
     if(tabletMatches || mobileMatches) {
         return (
             <>
-                {detail.length === 0 
-                ? 
-                <div>로딩중</div>
-                :
                 <>
                 <S.DetailMovieContainer backdropPath={backdropImg + detail.backdrop_path}>
                     <S.PosterContainer>
@@ -27,16 +24,23 @@ const DetailIntro = () => {
                 </S.DetailMovieContainer>
                 <S.MovieContentContainer>
                     <S.Title>{detail.title} ({detail.release_date.substring(0,4)})</S.Title>
-                    <S.VoteAvg>평점 {detail.vote_average} / 10</S.VoteAvg>
+                    <S.VoteAndRuntime>
+                        <S.VoteBox>
+                            <Rating name="read" value={detail.vote_average/2} emptyIcon={<S.CustomStarBorderIcon fontSize="inherit" />} readOnly></Rating>
+                            <S.VoteAvg>{detail.vote_average}</S.VoteAvg>
+                        </S.VoteBox>
+                            <S.Runtime>{detail.runtime}분</S.Runtime>
+                    </S.VoteAndRuntime>
                     <S.Overview>{detail.overview}</S.Overview>
                     {detail.genres.map((genre, i) => {
                         return <S.Genre key={i}>{genre.name} </S.Genre>
                     })}
-                    <S.Runtime>{detail.runtime}분</S.Runtime>
-                    <button>마음에 들어요</button>
+                    <S.LikeBtn>
+                        <S.CustomAddIcon />
+                        <span>마음에 들어요</span>
+                    </S.LikeBtn>
                 </S.MovieContentContainer>
                 </>
-                }
             </>
         );
     }else{
@@ -45,13 +49,21 @@ const DetailIntro = () => {
                 <S.DetailMovieContainer backdropPath={backdropImg + detail.backdrop_path}>
                     <S.MovieContentContainer>
                         <S.Title>{detail.title} ({detail.release_date.substring(0,4)})</S.Title>
-                        <S.VoteAvg>평점 {detail.vote_average} / 10</S.VoteAvg>
+                        <S.VoteAndRuntime>
+                            <S.VoteBox>
+                                <Rating name="read" value={detail.vote_average/2} emptyIcon={<S.CustomStarBorderIcon fontSize="inherit" />} readOnly></Rating>
+                                <S.VoteAvg>{detail.vote_average}</S.VoteAvg>
+                            </S.VoteBox>
+                            <S.Runtime>{detail.runtime}분</S.Runtime>
+                        </S.VoteAndRuntime>
                         <S.Overview>{detail.overview}</S.Overview>
                         {detail.genres.map((genre, i) => {
                             return <S.Genre key={i}>{genre.name} </S.Genre>
                         })}
-                        <S.Runtime>{detail.runtime}분</S.Runtime>
-                        <button>마음에 들어요</button>
+                        <S.LikeBtn>
+                            <S.CustomAddIcon />
+                            <span>마음에 들어요</span>
+                        </S.LikeBtn>
                     </S.MovieContentContainer>
                     <S.PosterContainer backdropPath={backdropImg + detail.backdrop_path}>
                         <S.Poster $posterPath={backdropImg + detail.poster_path}></S.Poster>

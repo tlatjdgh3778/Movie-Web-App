@@ -1,5 +1,9 @@
 import { BackgroundImage } from 'style/componentstyle';
 import styled from 'styled-components';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { Button } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import DoneIcon from '@material-ui/icons/Done';
 
 const DetailMovieContainer = styled.div`
     display: flex;
@@ -40,7 +44,7 @@ const Poster = styled.div`
 `;
 
 const MovieContentContainer = styled.div`
-    padding-left: 5vw;
+    padding: 0 5vw;
     position: relative;
     ${(props) => props.theme.device.Tablet}{
     }
@@ -53,11 +57,27 @@ const Title = styled.div`
     color: ${(props) => props.theme.color.fontColor};
 `;
 
+const VoteAndRuntime = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+const VoteBox = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
 const VoteAvg = styled.div`
+    padding-left: 10px;
     font-size: 1.5vw;
     ${(props) => props.theme.device.Tablet}{
         font-size: 2vw;
     }
+`;
+
+const CustomStarBorderIcon = styled(StarBorderIcon)`
+    color: ${(props) => props.theme.color.fontSubColor};
 `;
 
 const Overview = styled.div`
@@ -71,17 +91,42 @@ const Overview = styled.div`
 
 const Genre = styled.span`
     font-size: 1.5vw;
+    color: ${(props) => props.theme.color.fontSubColor};
     ${(props) => props.theme.device.Tablet}{
         font-size: 2.5vw;
     }
 `;
 
 const Runtime = styled.div`
-    font-size: 1.5vw;
+    font-size: 2vw;
+    color: ${(props) => props.theme.color.fontSubColor};
     padding-top: 0.5vw;
     ${(props) => props.theme.device.Tablet}{
         font-size: 2.5vw;
     }
 `;
 
-export { DetailMovieContainer, PosterContainer, Poster, MovieContentContainer, Title, VoteAvg, Overview, Genre, Runtime};
+const LikeBtn = styled(Button)`
+    color: ${(props) => props.theme.color.fontColor};
+    display: flex;
+    font-size: 2vw;
+    bottom: 0.5vw;
+    margin: 1rem 0;
+    padding-right: 0.6rem;
+    background-color: rgba(255,255,255,0.1);
+
+    &:hover {
+        background-color: ${(props) => props.theme.color.fontColor};
+        color: ${(props) => props.theme.color.bgColor};
+    }
+`;
+
+const CustomAddIcon = styled(AddIcon)`
+    font-size: 3vw;
+`;
+
+const CustomDoneIcon = styled(DoneIcon)`
+    font-size: 3vw;
+`;
+
+export { DetailMovieContainer, PosterContainer, Poster, MovieContentContainer, Title, VoteAvg, Overview, Genre, Runtime, VoteBox, CustomStarBorderIcon, VoteAndRuntime, LikeBtn, CustomAddIcon, CustomDoneIcon };
