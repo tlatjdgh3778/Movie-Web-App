@@ -4,10 +4,9 @@ import * as Scroll from 'react-scroll';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  const scroll = Scroll.animateScroll;
-  
+
   useEffect(() => {
-    scroll.scrollToTop();
+    Scroll.animateScroll.scrollToTop();
   }, [pathname]);
 
   return null;
