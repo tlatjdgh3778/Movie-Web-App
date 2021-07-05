@@ -31,25 +31,27 @@ const Title = styled.div`
     padding-top: 10vw;
     padding-left: 4vw;
     font-weight: 700;
-    color: ${(props) => props.theme.color.fontColor};
+    color: white;
 `;
 
 const Tagline = styled.div`
     position: relative;
     font-size: 3vw;
     padding-left: 4vw;
+    color: white;
 `;
 
 const MoreBtn = styled(Button)`
-    color: ${(props) => props.theme.color.fontColor};
+    color: white;
     font-size: 3.5vw;
     margin-left: 4vw;
     position: absolute;
     bottom: 0.5vw;
+    background-color: rgba(255,255,255,0.1);
 
     &:hover {
-        background-color: ${(props) => props.theme.color.fontColor};
-        color: ${(props) => props.theme.color.bgColor};
+        background-color: white;
+        color: black;
     }
 `;
 
