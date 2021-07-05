@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import { InputBase, Typography } from '@material-ui/core';
+import { InputBase, Typography, IconButton} from '@material-ui/core';
 
 const HeaderContainer = styled.div`
     display: flex;
@@ -21,9 +21,20 @@ const SearchContainer = styled.div`
     width: 12rem;
 `;
 
+const MenuIconButton = styled(IconButton)`
+
+    ${(props) => props.theme.device.Tablet} {
+        padding: 0;
+    }
+`;
+
 const CustomMenuIcon = styled(MenuIcon)`
     color: ${(props) => props.theme.color.fontColor};
     font-size: 2.5rem;
+
+    ${(props) => props.theme.device.Mobile} {
+        font-size: 1.5rem;
+    }
 `;
 
 const CustomInputBase = styled(InputBase)`
@@ -42,4 +53,4 @@ const Title = styled(Typography)`
     padding: 0 1rem;
 `;
 
-export { HeaderContainer, SearchContainer, CustomMenuIcon, CustomSearchIcon, CustomInputBase, Title };
+export { HeaderContainer, SearchContainer, CustomMenuIcon, CustomSearchIcon, CustomInputBase, Title, MenuIconButton };

@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { ModalStateContext } from 'contexts/modal';
 import { ResultContext } from 'contexts/results';
-import { IconButton } from '@material-ui/core';
 import { getSearchMovie } from 'apis/getMovieData';
 import { useHistory } from 'react-router-dom';
 import * as S from './Header.style';
@@ -38,9 +37,9 @@ const Header = () => {
 
     return(
         <S.HeaderContainer>
-            <IconButton onClick={menuOpen}>
+            <S.MenuIconButton onClick={menuOpen}>
                 <S.CustomMenuIcon/>
-            </IconButton>
+            </S.MenuIconButton>
             <S.Title>Movie Web</S.Title>
             <S.SearchContainer>
                 <S.CustomSearchIcon/>
