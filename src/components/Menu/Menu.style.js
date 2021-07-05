@@ -24,11 +24,11 @@ const MenuContent = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: ${(props) => props.theme.color.bgColor};
+    color: white;
 `;
 
 const MenuItem = styled(Typography)`
-    color: ${(props) => props.theme.color.fontColor};
+    color: white;
     font-size: 5vw;
     font-weight: 700;
     margin-bottom: 2rem;
@@ -39,12 +39,11 @@ const CloseIconButton = styled(IconButton)`
     top: 0;
     right: 0;
     margin: 1rem;
-    color: ${(props) => props.theme.color.fontColor};
+    color: white;
     z-index: 1000;
 `;
 
 const CloseBtn = styled(CloseIcon)`
-    color: ${(props) => props.theme.color.fontColor};
     font-size: 6vw;
 `;
 
@@ -53,7 +52,7 @@ const ModeIconButton = styled(IconButton)`
     top: 0;
     left: 0;
     margin: 1rem;
-    color: ${(props) => props.theme.color.fontColor};
+    color: white;
     z-index: 1000;
 `;
 
