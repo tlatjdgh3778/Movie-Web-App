@@ -9,6 +9,7 @@ const HeaderContainer = styled.div`
     justify-content: space-between;
     padding: 1rem;
     height: 2rem;
+    background-color: ${(props) => props.theme.color.headerColor};
 `;
 
 const SearchContainer = styled.div`
@@ -16,7 +17,7 @@ const SearchContainer = styled.div`
     justify-content: flex-end;
     align-items: center;
     border-radius: 5px;
-    background-color: #212121;
+    background-color: ${(props) => props.theme.color.searchContainer};
     width: 12rem;
 `;
 
@@ -28,6 +29,7 @@ const CustomMenuIcon = styled(MenuIcon)`
 const CustomInputBase = styled(InputBase)`
     padding: 0.3rem 0;
     color: ${(props) => props.theme.color.fontColor};
+    width: 80%;
 `;
 
 const CustomSearchIcon = styled(SearchIcon)`
