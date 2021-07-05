@@ -25,11 +25,15 @@ const darkMode = {
     fontSize,
     device,
     color: {
+        headerColor: '#1d1d1d',
         fontColor: '#fff',
+        // 장르, 별점 이런 애들
         fontSubColor: 'rgba(255, 255, 255, 0.8)',
         bgColor: '#121212',
         fontHoverColor: '#c9c9c9',
-        listBgColor: '#0d0c0c',
+        listBgColor: '#1d1d1d',
+        searchContainer: '#515151',
+        imageCover: 'black',
     }
 }
 
@@ -37,10 +41,13 @@ const lightMode = {
     fontSize,
     device,
     color: {
-        fontColor: '#121212',
-        bgColor: '#fff',
-        fontHoverColor: '#dbd9d3',
-        listBgColor: '#0d0c0c',
+        headerColor: '#fbfbfb',
+        fontColor: '#000',
+        fontSubColor: '#121212',
+        bgColor: '#ececec',
+        fontHoverColor: '#575757',
+        listBgColor: '#fbfbfb',
+        searchContainer: '#e6e8ea',
     }
 }
 
