@@ -26,7 +26,6 @@ const Results = ({ getGridListCols }) => {
         history.push(`/Detail/${id}`);
     };
 
-    console.log(results)
     if(results.total_results === 0){
         return(
             <>

@@ -16,7 +16,7 @@ const Menu = () => {
     const changeMode = () => {
         setIsDark(!isDark);
     }
-    console.log(isDark);
+
     return(
         <>
             {state.isOpen ? 
