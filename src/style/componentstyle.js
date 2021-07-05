@@ -24,7 +24,8 @@ const BackgroundImage = css`
 // 영화 리스트 재활용 가능..
 const ListContainer = styled.div`
     background-color: ${(props) => props.theme.color.listBgColor};
-    padding: 0 2rem;
+    padding: 1rem 2rem;
+    margin: 1rem;
 `;
 const ListHeader = styled.div`
     display: flex;
