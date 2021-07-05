@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import GlobalStyle from 'style/global';
 import { ThemeProvider } from 'styled-components';
 import theme from 'style/theme';
@@ -17,10 +17,12 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ModalStateProvider } from 'contexts/modal';
 import { ResultProvider } from 'contexts/results';
 import { MovieProvider } from 'contexts/movie';
+import { ModeContext } from 'contexts/mode';
 import { Switch, Route } from 'react-router-dom';
 
 function App() {
-  const [isDark, setIsDark] = useState(true);
+  const { isDark } = useContext(ModeContext).state;
+
   const themeBreakPoint = createMuiTheme({
     breakpoints: {
       values: {
