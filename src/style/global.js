@@ -88,7 +88,11 @@ a {
 }
 
 .MuiRating-iconFilled {
-    color: ${(props) => props.theme.color.fontSubColor};
+    color: rgba(255, 255, 255, 0.8);
+
+    ${(props) => props.theme.device.Tablet}{
+        color: ${(props) => props.theme.color.fontSubColor};
+    }
 }
 
 .MuiRating-iconEmpty {
