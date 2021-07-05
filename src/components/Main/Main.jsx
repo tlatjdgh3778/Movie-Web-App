@@ -1,6 +1,6 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { MovieContext } from 'contexts/movie';
-import { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo } from 'apis/getMovieData';
+import { getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo } from 'apis/getMovieData';
 import { useHistory } from 'react-router-dom';
 import * as S from './Main.style';
 import MainIntro from './MainIntro/MainIntro';
@@ -10,29 +10,9 @@ import MainTopRated from './MainTopRated/MainTopRated';
 import ReactLoading from 'react-loading';
 
 const Main = ({ getGridListCols }) => {
-    const { setPopular, setNowPlaying, setTopRated, setTrend, setDetail, setCredit, setRecommendation, setVideo } = useContext(MovieContext).actions;
+    const { setDetail, setCredit, setRecommendation, setVideo } = useContext(MovieContext).actions;
     const history = useHistory();
     const { state } = useContext(MovieContext);
-    
-    const random = Math.floor(Math.random() * 10);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const popular = await getPopularMovie();
-            const playing = await getNowplayingMovie();
-            const rated = await getTopratedMovie();
-            const trend = await getTrendingMovie();
-    
-            await setPopular(popular);
-            await setNowPlaying(playing);
-            await setTopRated(rated);
-            await setTrend(trend);
-
-            const detail = await getMovieDetail(trend.results[random].id);
-            await setDetail(detail);
-        }
-        fetchData();
-    }, []);
 
     const getDetail = async (id) => {
         const detail = await getMovieDetail(id);
