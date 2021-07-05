@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { Typography } from '@material-ui/core';
+import { Typography, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import { IconButton } from '@material-ui/core';
+import Brightness4Icon from '@material-ui/icons/Brightness4'; // Brightness4Icon 다크모드로
+import Brightness7Icon from '@material-ui/icons/Brightness7'; // Brightness7Icon 라이트모드로
 
 const Background = styled.div`
     position: fixed;
@@ -33,7 +34,7 @@ const MenuItem = styled(Typography)`
     margin-bottom: 2rem;
 `;
 
-const CustomIconButton = styled(IconButton)`
+const CloseIconButton = styled(IconButton)`
     position: absolute;
     top: 0;
     right: 0;
@@ -47,5 +48,20 @@ const CloseBtn = styled(CloseIcon)`
     font-size: 6vw;
 `;
 
+const ModeIconButton = styled(IconButton)`
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 1rem;
+    color: ${(props) => props.theme.color.fontColor};
+    z-index: 1000;
+`;
 
-export { Background, MenuContent, CustomIconButton, CloseBtn, MenuItem };
+const DarkMode = styled(Brightness4Icon)`
+    font-size: 6vw;
+`;
+
+const LightMode = styled(Brightness7Icon)`
+    font-size: 6vw;
+`;
+export { Background, MenuContent, CloseIconButton, CloseBtn, MenuItem, ModeIconButton, DarkMode, LightMode };
