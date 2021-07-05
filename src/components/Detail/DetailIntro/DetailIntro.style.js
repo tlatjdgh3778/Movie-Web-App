@@ -46,15 +46,17 @@ const Poster = styled.div`
 const MovieContentContainer = styled.div`
     padding: 0 5vw;
     position: relative;
-    ${(props) => props.theme.device.Tablet}{
-    }
 `;
 
 const Title = styled.div`
     font-size: 4vw;
     padding-top: 4vw;
     font-weight: 700;
-    color: ${(props) => props.theme.color.fontColor};
+    color: white;
+
+    ${(props) => props.theme.device.Tablet}{
+        color: ${(props) => props.theme.color.fontColor};
+    }
 `;
 
 const VoteAndRuntime = styled.div`
@@ -71,51 +73,63 @@ const VoteBox = styled.div`
 const VoteAvg = styled.div`
     padding-left: 10px;
     font-size: 1.5vw;
+    color: rgba(255, 255, 255, 0.8);
+    
     ${(props) => props.theme.device.Tablet}{
         font-size: 2vw;
+        color: ${(props) => props.theme.color.fontSubColor};
     }
 `;
 
 const CustomStarBorderIcon = styled(StarBorderIcon)`
-    color: ${(props) => props.theme.color.fontSubColor};
+    color: rgba(255, 255, 255, 0.8);
+
+    ${(props) => props.theme.device.Tablet} {
+        color: ${(props) => props.theme.color.fontSubColor};
+    }
 `;
 
 const Overview = styled.div`
     font-size: 1.5vw;
     padding-top: 1vw;
-
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     word-wrap: break-word;
     overflow: hidden;
+    color: white;
 
     ${(props) => props.theme.device.Tablet}{
         font-size: 2.5vw;
         -webkit-line-clamp: 6;
+        color: ${(props) => props.theme.color.fontSubColor};
     }
 `;
 
 const Genre = styled.span`
     font-size: 1.5vw;
-    color: ${(props) => props.theme.color.fontSubColor};
+    color: rgba(255, 255, 255, 0.8);
+    
     ${(props) => props.theme.device.Tablet}{
         font-size: 2.5vw;
+        color: ${(props) => props.theme.color.fontSubColor};
     }
 `;
 
 const Runtime = styled.div`
     font-size: 2vw;
-    color: ${(props) => props.theme.color.fontSubColor};
     padding-top: 0.5vw;
+    color: rgba(255, 255, 255, 0.8);
+    
     ${(props) => props.theme.device.Tablet}{
         font-size: 2.5vw;
+        color: ${(props) => props.theme.color.fontSubColor};
     }
 `;
 
 const LikeBtn = styled(Button)`
-    color: ${(props) => props.theme.color.fontColor};
+    color: white;
     display: flex;
     font-size: 2vw;
     bottom: 0.5vw;
@@ -124,8 +138,17 @@ const LikeBtn = styled(Button)`
     background-color: rgba(255,255,255,0.1);
 
     &:hover {
+        background-color: white;
+        color: black;
+    }
+
+    ${(props) => props.theme.device.Tablet}{
+        color: ${(props) => props.theme.color.fontSubColor};
+
+        &:hover {
         background-color: ${(props) => props.theme.color.fontColor};
         color: ${(props) => props.theme.color.bgColor};
+    }
     }
 `;
 
