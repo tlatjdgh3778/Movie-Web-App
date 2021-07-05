@@ -40,16 +40,16 @@ function App() {
 
   const getGridListCols = () => {
       if(mobileMatches){
-          return 2;
+          return 1;
       }
       if(tabletMatches){
-          return 3;
+          return 2;
       }
       if(laptopMatches){
-          return 4;
+          return 3;
       }
       if(desktopMatches){
-          return 5;
+          return 4;
       }
   }
   return (

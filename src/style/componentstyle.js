@@ -71,7 +71,7 @@ const List = styled(GridList)`
     overflow-y: hidden;
     transform: translateZ(0);
     margin: 0 !important;
-    height: 25vw;
+    height: 30vw;
     width: 100%;
 
     ${(props) => props.theme.device.LapTop} {
@@ -83,7 +83,7 @@ const List = styled(GridList)`
     }
 
     ${(props) => props.theme.device.Mobile} {
-        height: 70vw;
+        height: 80vw;
     }
 `;
 const ListMovie = styled(GridList)`
