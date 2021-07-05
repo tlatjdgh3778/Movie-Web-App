@@ -1,22 +1,32 @@
 import React, { useContext } from 'react';
 import { ModalStateContext } from 'contexts/modal';
+import { ModeContext } from 'contexts/mode';
 import { NavLink } from 'react-router-dom';
 import * as S from './Menu.style';
 
 const Menu = () => {
     const { state, actions } = useContext(ModalStateContext);
-    
+    const { isDark } = useContext(ModeContext).state;
+    const { setIsDark } = useContext(ModeContext).actions;
+
     const closeMenu = () => {
         actions.setIsOpen(!state.isOpen);
     }
 
+    const changeMode = () => {
+        setIsDark(!isDark);
+    }
+    console.log(isDark);
     return(
         <>
             {state.isOpen ? 
             <S.Background>
-                <S.CustomIconButton onClick={closeMenu}>
-                    <S.CloseBtn></S.CloseBtn>
-                </S.CustomIconButton>
+                <S.ModeIconButton onClick={changeMode}>
+                    {isDark ? <S.LightMode /> : <S.DarkMode /> }
+                </S.ModeIconButton>
+                <S.CloseIconButton onClick={closeMenu}>
+                    <S.CloseBtn />
+                </S.CloseIconButton>
                 <S.MenuContent>
                     <NavLink to="/" onClick={closeMenu}><S.MenuItem>메인화면</S.MenuItem></NavLink>
                     <NavLink to="/Popular" onClick={closeMenu}><S.MenuItem>인기영화</S.MenuItem></NavLink>
