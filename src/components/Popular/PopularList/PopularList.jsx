@@ -6,8 +6,8 @@ import { backdropImg, nullImg } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
 import { getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo } from 'apis/getMovieData';
 
-const TopRated = ({ getGridListCols }) => {
-    const { topRated } = useContext(MovieContext).state;
+const PopularList = ({ getGridListCols }) => {
+    const { popular } = useContext(MovieContext).state;
     const { setDetail, setCredit, setRecommendation, setVideo } = useContext(MovieContext).actions;
 
     const history = useHistory();
@@ -24,23 +24,22 @@ const TopRated = ({ getGridListCols }) => {
         await setVideo(video);
         history.push(`/Detail/${id}`);
     };
+
     return(
-        <>
-            <GS.ListMovieTitle>별점이 높은 영화 목록</GS.ListMovieTitle>
-            <GS.MovieContainer>        
-                <GS.ListMovie cellHeight={'auto'} cols={getGridListCols()} spacing={30}> 
-                    {topRated.results.map((movie, i) => (
-                        <GridListTile onClick={e => {
-                            getDetail(e.currentTarget.id)
-                        }} key={i} id={movie.id}>
-                            <img alt={movie.title} src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
-                            <GridListTileBar title={movie.title}></GridListTileBar>
-                        </GridListTile>
-                    ))}
-                </GS.ListMovie>
-            </GS.MovieContainer>
+        <>      
+            <GS.ListMovie cellHeight={'auto'} cols={getGridListCols()} spacing={30}> 
+                {popular.results.map((movie, i) => (
+                    <GridListTile onClick={e => {
+                        getDetail(e.currentTarget.id)
+                    }} key={i} id={movie.id}>
+                        <img alt={movie.title} src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
+                        <GridListTileBar title={movie.title}></GridListTileBar>
+                    </GridListTile>
+                ))}
+            </GS.ListMovie>
         </>
     );
 }
 
-export default TopRated;
+export default PopularList;
+

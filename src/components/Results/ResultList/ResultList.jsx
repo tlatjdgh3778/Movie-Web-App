@@ -7,8 +7,8 @@ import { GridListTile, GridListTileBar } from '@material-ui/core';
 import * as GS from 'style/componentstyle';
 import { backdropImg, nullImg } from 'utils/constants';
 
-const Results = ({ getGridListCols }) => {
-    const { results, searchValue } = useContext(ResultContext).state;
+const ResultList = ({ getGridListCols }) => {
+    const { results } = useContext(ResultContext).state;
     const { setDetail, setCredit, setRecommendation, setVideo } = useContext(MovieContext).actions;
 
     const history = useHistory();
@@ -26,18 +26,8 @@ const Results = ({ getGridListCols }) => {
         history.push(`/Detail/${id}`);
     };
 
-    if(results.total_results === 0){
         return(
-            <>
-                <GS.ExceptionMsg>검색 결과가 없습니다.</GS.ExceptionMsg>
-            </>
-        );
-    }else{
-        return(
-            <>
-            {/* 영화 결과 */}
-            <GS.ListMovieTitle>"{searchValue}" 검색 결과</GS.ListMovieTitle>
-            <GS.MovieContainer>        
+            <>      
                 <GS.ListMovie cellHeight={'auto'} cols={getGridListCols()} spacing={30}> 
                     {results.results.map((movie, i) => (
                         <GridListTile onClick={e => {
@@ -48,10 +38,8 @@ const Results = ({ getGridListCols }) => {
                         </GridListTile>
                     ))}
                 </GS.ListMovie>
-            </GS.MovieContainer>
             </>
         );
-    }
 }
 
-export default Results;
+export default ResultList;

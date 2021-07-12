@@ -2,10 +2,7 @@ import React, { useContext } from 'react';
 import { MovieContext } from 'contexts/movie';
 import { useHistory } from 'react-router-dom';
 import { getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo } from 'apis/getMovieData';
-import DetailIntro from './DetailIntro/DetailIntro';
-import DetailCast from './DetailCast/DetailCast';
-import DetailVideo from './DetailVideo/DetailVideo';
-import DetailRecommendation from './DetailRecommendation/DetailRecommendation';
+import { DetailIntro, DetailCast, DetailVideo, DetailRecommendation } from 'components/Detail/index';
 
 const Detail = ({ getGridListCols }) => {
     const { setDetail, setCredit, setRecommendation, setVideo } = useContext(MovieContext).actions;

@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
-import { MovieContext } from 'contexts/movie';
 import { GridListTile, GridListTileBar } from '@material-ui/core';
-import * as GS from 'style/componentstyle';
-import * as S from './Likes.style';
+import { getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo } from 'apis/getMovieData';
 import { backdropImg, nullImg } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
-import { getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo } from 'apis/getMovieData';
+import { MovieContext } from 'contexts/movie';
+import * as GS from 'style/componentstyle';
+import * as S from './LikeList.style';
 
-const Likes = ({ getGridListCols }) => {
+const LikeList = ({ getGridListCols }) => {
     const { setDetail, setCredit, setRecommendation, setVideo } = useContext(MovieContext).actions;
     const [del, setDel] = useState(true);
     const LikeMovies = Object.keys(localStorage);
@@ -25,12 +25,10 @@ const Likes = ({ getGridListCols }) => {
         await setVideo(video);
         history.push(`/Detail/${id}`);
     };
-
+    
     return(
         <>
-            <GS.ListMovieTitle>좋아요 누른 영화</GS.ListMovieTitle>
-            <GS.MovieContainer>        
-                <GS.ListMovie cellHeight={'auto'} cols={getGridListCols()} spacing={30}> 
+        <GS.ListMovie cellHeight={'auto'} cols={getGridListCols()} spacing={30}> 
                 {LikeMovies.map((movie, i) => {
                     return(
                         <GridListTile onClick={e => {
@@ -50,13 +48,11 @@ const Likes = ({ getGridListCols }) => {
                                 </S.CustomIconButton>
                             }></GridListTileBar>
                         </GridListTile>
-
                     )  
                 })}
-                </GS.ListMovie>
-            </GS.MovieContainer>
+            </GS.ListMovie>
         </>
     );
 }
 
-export default Likes;
+export default LikeList;

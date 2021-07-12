@@ -3,10 +3,7 @@ import { MovieContext } from 'contexts/movie';
 import { getPopularMovie, getNowplayingMovie, getTopratedMovie, getTrendingMovie, getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo } from 'apis/getMovieData';
 import { useHistory } from 'react-router-dom';
 import * as S from './Main.style';
-import MainIntro from './MainIntro/MainIntro';
-import MainPopular from './MainPopular/MainPopular';
-import MainNowPlaying from './MainNowPlaying/MainNowPlaying';
-import MainTopRated from './MainTopRated/MainTopRated';
+import { MainIntro, MainPopular, MainNowPlaying, MainTopRated } from 'components/Main/index';
 import ReactLoading from 'react-loading';
 import { random } from 'utils/constants';
 
