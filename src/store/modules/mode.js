@@ -1,5 +1,5 @@
 // mode module
-// ducks pattern
+// ducks pattern 
 
 // types
 export const CHANGE_MODE = 'mode/CHANGE_MODE';
