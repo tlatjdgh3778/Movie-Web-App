@@ -1,28 +1,20 @@
-import React, { useState, useContext } from 'react';
-import { ModalStateContext } from 'contexts/modal';
-import { ResultContext } from 'contexts/results';
-import { getSearchMovie } from 'apis/getMovieData';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as S from './Header.style';
+import { connect } from 'react-redux';
+import { toggleModal } from 'store/modules/modal';
+import { fetchSearchResult } from 'store/modules/search';
 
-const Header = () => {
+const Header = ({ toggleModal, fetchSearchResult }) => {
     const history = useHistory();
 
-    const { actions } = useContext(ModalStateContext);
-    const { setResults, setSearchValue } = useContext(ResultContext).actions;
 
     const [value, setValue] = useState("");
-
-    const menuOpen = () => {
-        actions.setIsOpen(true);
-    };
 
     const onSubmit = async (e) => {
         e.preventDefault();
         if(value.length !== 0) {
-            const search = await getSearchMovie(value);
-            setResults(search);
-            setSearchValue(value);
+            fetchSearchResult(value);
             if(history.location.pathname !== "/Results"){
                 history.push("/Results");
             }
@@ -37,7 +29,7 @@ const Header = () => {
 
     return(
         <S.HeaderContainer>
-            <S.MenuIconButton onClick={menuOpen}>
+            <S.MenuIconButton onClick={toggleModal}>
                 <S.CustomMenuIcon/>
             </S.MenuIconButton>
             <S.Title>Movie Web</S.Title>
@@ -56,4 +48,14 @@ const Header = () => {
     );
 }
 
-export default Header;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        toggleModal: () => dispatch(toggleModal()),
+        fetchSearchResult: (search) => dispatch(fetchSearchResult(search)),
+    }
+}
+
+export default connect( 
+    null,
+    mapDispatchToProps
+)(Header);
