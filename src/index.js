@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import ScrollTop from 'components/Scroll/ScrollTop'; 
-import { ModeProvider } from 'contexts/mode';
+import { Provider } from 'react-redux';
+import store from 'store';
 
 ReactDOM.render(
   <BrowserRouter>
     <ScrollTop />
-      <ModeProvider>
+      <Provider store={store}>
         <App />
-      </ModeProvider>
+      </Provider>
   </BrowserRouter>,
   document.getElementById('root')
 );
