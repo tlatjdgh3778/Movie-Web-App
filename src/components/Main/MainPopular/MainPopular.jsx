@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { MovieContext } from 'contexts/movie';
+import React from 'react';
 import * as GS from 'style/componentstyle';
 import { backdropImg, nullImg } from 'utils/constants';
 import { GridListTile, GridListTileBar } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 const MainPopular = ({ toPage, getDetail, getGridListCols }) => {
-    const { popular } = useContext(MovieContext).state;
+    const popular = useSelector(({ movies }) => movies.popular.results);
 
     return(
         <GS.ListContainer>

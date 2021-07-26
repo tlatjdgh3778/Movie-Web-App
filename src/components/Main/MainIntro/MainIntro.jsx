@@ -1,11 +1,19 @@
-import React, { useContext } from 'react';
-import { MovieContext } from 'contexts/movie';
+import React, { useEffect } from 'react';
 import * as S from './MainIntro.style';
 import { backdropImg } from 'utils/constants';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchDetail } from 'store/modules/detail';
+import { random } from 'utils/constants';
 
 const MainIntro = ({ getDetail }) => {
-    const { detail } = useContext(MovieContext).state;
+    const dispatch = useDispatch();
+    const trend = useSelector(({ movies }) => movies.trend.results);
+    const detail = useSelector(({ detail }) => detail.results);
     
+    useEffect(() => {
+        dispatch(fetchDetail(trend.results[random].id))
+    }, [dispatch, trend.results])
+
     return(
         // MainIntro
             <div>

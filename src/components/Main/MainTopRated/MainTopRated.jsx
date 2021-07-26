@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { MovieContext } from 'contexts/movie';
+import React from 'react';
 import * as GS from 'style/componentstyle';
 import { backdropImg, nullImg } from 'utils/constants';
 import { GridListTile, GridListTileBar } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 const MainTopRated = ({ toPage, getDetail, getGridListCols }) => {
-    const { topRated } = useContext(MovieContext).state;
+    const topRated = useSelector(({ movies }) => movies.topRated.results);
 
     return(
         <GS.ListContainer>

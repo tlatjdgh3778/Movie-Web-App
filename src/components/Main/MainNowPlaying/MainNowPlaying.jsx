@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { MovieContext } from 'contexts/movie';
+import React from 'react';
 import * as GS from 'style/componentstyle';
 import { backdropImg, nullImg } from 'utils/constants';
 import { GridListTile, GridListTileBar } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 const MainNowPlaying = ({ toPage, getDetail, getGridListCols }) => {
-    const { nowPlaying } = useContext(MovieContext).state;
+    const nowPlaying = useSelector(({ movies }) => movies.nowPlaying.results);
 
     return(
         <GS.ListContainer>
