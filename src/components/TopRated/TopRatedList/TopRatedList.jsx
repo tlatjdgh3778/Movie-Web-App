@@ -1,37 +1,26 @@
-import React, { useContext } from 'react';
-import { MovieContext } from 'contexts/movie';
+import React from 'react';
 import { GridListTile, GridListTileBar } from '@material-ui/core';
 import * as GS from 'style/componentstyle';
 import { backdropImg, nullImg } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
-import { getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo } from 'apis/getMovieData';
+import { useGetGridListCols } from 'hooks/useGetGridListCols';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchDetail } from 'store/modules/detail';
 
-const TopRatedList = ({ getGridListCols }) => {
-    const { topRated } = useContext(MovieContext).state;
-    const { setDetail, setCredit, setRecommendation, setVideo } = useContext(MovieContext).actions;
-
+const TopRatedList = () => {
+    const cols = useGetGridListCols();
+    const dispatch = useDispatch();
+    const topRated = useSelector(({ movies }) => movies.topRated.results);
     const history = useHistory();
-
-    const getDetail = async (id) => {
-        const detail = await getMovieDetail(id);
-        const credit = await getMovieCredit(id);
-        const recommendation = await getMovieRecommendation(id);
-        const video = await getMovieVideo(id);
-        
-        await setDetail(detail);
-        await setCredit(credit);
-        await setRecommendation(recommendation);
-        await setVideo(video);
-        history.push(`/Detail/${id}`);
-    };
     
     return(
         <>     
-            <GS.ListMovie cellHeight={'auto'} cols={getGridListCols()} spacing={30}> 
-                {topRated.results.map((movie, i) => (
+            <GS.ListMovie cellHeight={'auto'} cols={cols} spacing={30}> 
+                {topRated.results.map((movie) => (
                     <GridListTile onClick={e => {
-                        getDetail(e.currentTarget.id)
-                    }} key={i} id={movie.id}>
+                        dispatch(fetchDetail(e.currentTarget.id))
+                        history.push(`/Detail/${e.currentTarget.id}`)
+                    }} key={movie.id} id={movie.id}>
                         <img alt={movie.title} src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
                         <GridListTileBar title={movie.title}></GridListTileBar>
                     </GridListTile>

@@ -1,45 +1,33 @@
-import React, { useContext } from 'react';
-import { ResultContext } from 'contexts/results';
-import { MovieContext } from 'contexts/movie';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo } from 'apis/getMovieData';
 import { GridListTile, GridListTileBar } from '@material-ui/core';
 import * as GS from 'style/componentstyle';
 import { backdropImg, nullImg } from 'utils/constants';
+import { useGetGridListCols } from 'hooks/useGetGridListCols';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchDetail } from 'store/modules/detail';
 
-const ResultList = ({ getGridListCols }) => {
-    const { results } = useContext(ResultContext).state;
-    const { setDetail, setCredit, setRecommendation, setVideo } = useContext(MovieContext).actions;
-
+const ResultList = () => {
+    const cols = useGetGridListCols();
+    const dispatch = useDispatch();
+    const searchResults = useSelector(({ search }) => search.searchResults);
     const history = useHistory();
 
-    const getDetail = async (id) => {
-        const detail = await getMovieDetail(id);
-        const credit = await getMovieCredit(id);
-        const recommendation = await getMovieRecommendation(id);
-        const video = await getMovieVideo(id);
-        
-        await setDetail(detail);
-        await setCredit(credit);
-        await setRecommendation(recommendation);
-        await setVideo(video);
-        history.push(`/Detail/${id}`);
-    };
-
-        return(
-            <>      
-                <GS.ListMovie cellHeight={'auto'} cols={getGridListCols()} spacing={30}> 
-                    {results.results.map((movie, i) => (
-                        <GridListTile onClick={e => {
-                            getDetail(e.currentTarget.id)
-                        }} key={i} id={movie.id}>
-                            <img alt={movie.title} src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
-                            <GridListTileBar title={movie.title}></GridListTileBar>
-                        </GridListTile>
-                    ))}
-                </GS.ListMovie>
-            </>
-        );
+    return(
+        <>      
+        <GS.ListMovie cellHeight={'auto'} cols={cols} spacing={30}> 
+                {searchResults.results.map((movie) => (
+                    <GridListTile onClick={e => {
+                        dispatch(fetchDetail(e.currentTarget.id))
+                        history.push(`/Detail/${e.currentTarget.id}`)
+                    }} key={movie.id} id={movie.id}>
+                        <img alt={movie.title} src={movie.poster_path === null ? nullImg : (backdropImg + movie.poster_path)}></img>
+                        <GridListTileBar title={movie.title}></GridListTileBar>
+                    </GridListTile>
+                ))}
+        </GS.ListMovie>
+        </>
+    );
 }
 
-export default ResultList;
+export default ResultList
