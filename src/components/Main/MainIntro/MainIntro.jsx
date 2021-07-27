@@ -4,11 +4,13 @@ import { backdropImg } from 'utils/constants';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchDetail } from 'store/modules/detail';
 import { random } from 'utils/constants';
+import { useHistory } from 'react-router-dom';
 
-const MainIntro = ({ getDetail }) => {
+const MainIntro = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const trend = useSelector(({ movies }) => movies.trend.results);
-    const detail = useSelector(({ detail }) => detail.results);
+    const detail = useSelector(({ detail }) => detail.details.results);
     
     useEffect(() => {
         dispatch(fetchDetail(trend.results[random].id))
@@ -23,7 +25,8 @@ const MainIntro = ({ getDetail }) => {
                         <S.Title>{detail.title}</S.Title>
                         <S.Tagline>{detail.tagline}</S.Tagline>
                         <S.MoreBtn id={detail.id} onClick={e=>{
-                            getDetail(e.currentTarget.id);
+                            dispatch(fetchDetail(e.currentTarget.id))
+                            history.push(`/Detail/${e.currentTarget.id}`)
                         }}>더보기</S.MoreBtn>
                     </div>
                 </S.MainMovieContainer>
