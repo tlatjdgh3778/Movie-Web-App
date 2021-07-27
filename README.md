@@ -31,7 +31,7 @@ TMDB(The Movie DataBase) API 를 이용해서 만든 리액트 프로젝트로 �
 | ![인기 영화](./screenshot/popular.png)| ![좋아요](./screenshot/likes.png)|
 
 ## 기술스택
-* React
+* React, react-redux
 * Styled-components + Material UI
 * TMDB API
 * Context API
@@ -39,4 +39,11 @@ TMDB(The Movie DataBase) API 를 이용해서 만든 리액트 프로젝트로 �
 
 ## 프로젝트를 하며 얻은 지식
 * Styled-components와 Material UI를 사용하는 방법에 대해 조금 익숙해졌다.
-* Context API를 사용해서 상태 관리하는 방법
+* Context API 를 사용해서 상태 관리하는 방법
+* react-redux 를 사용하는 방법
+
+### update 2021.07.26 ~ 27
+* 코드 리팩토링
+* Context API 대신 react-redux로 상태관리 하도록 리팩토링 함
+* ducks pattern 적용
+* custom hook 만들어서 관리
