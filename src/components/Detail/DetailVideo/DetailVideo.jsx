@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import * as GS from 'style/componentstyle';
 import { GridListTile, GridListTileBar } from '@material-ui/core';
-import { MovieContext } from 'contexts/movie';
 import { nullImg, youtubeLink, thumbnail } from 'utils/constants';
+import { useSelector } from 'react-redux';
+import { useGetGridListCols } from 'hooks/useGetGridListCols';
 
-const DetailVideo = ({ getGridListCols }) => {
-    const { video } = useContext(MovieContext).state;
+const DetailVideo = () => {
+    const cols = useGetGridListCols();
+    const video = useSelector(({ detail }) => detail.video.results);
 
     const toYoutube = link => {
         const win = window.open(link, "_blank");
@@ -22,7 +24,7 @@ const DetailVideo = ({ getGridListCols }) => {
         :
         <>
         <GS.MovieContainer>
-            <GS.List cellHeight={'auto'} spacing={20} cols={getGridListCols()}>
+            <GS.List cellHeight={'auto'} spacing={20} cols={cols}>
                 {video.results.map((video, i) => {
                     return (
                         <GridListTile key={i} onClick={() => {

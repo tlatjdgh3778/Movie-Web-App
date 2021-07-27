@@ -1,18 +1,17 @@
-import React, { useState, useContext } from 'react';
-import { MovieContext } from 'contexts/movie';
+import React, { useState } from 'react';
 import Rating from '@material-ui/lab/Rating';
 import { useMediaQuery } from '@material-ui/core';
 import * as S from './DetailIntro.style';
-import { useTheme } from '@material-ui/core/styles';
 import { backdropImg } from 'utils/constants';
+import { useSelector } from 'react-redux';
 
 const DetailIntro = () => {
-    const { detail } = useContext(MovieContext).state;
+    const detail = useSelector(({ detail }) => detail.details.results);
+
     const [like, setLike] = useState(false);
 
-    const theme = useTheme();
-    const mobileMatches = useMediaQuery(theme.breakpoints.values.mobile);
-    const tabletMatches = useMediaQuery(theme.breakpoints.values.tablet);
+    const mobileMatches = useMediaQuery('(max-width:480px)');
+    const tabletMatches = useMediaQuery('(min-width:481px) and (max-width:768px)');
 
     const addLocal = () => {
         localStorage.setItem(detail.id, JSON.stringify({

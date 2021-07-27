@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import * as GS from 'style/componentstyle';
 import { GridListTile, GridListTileBar } from '@material-ui/core';
-import { MovieContext } from 'contexts/movie';
 import { backdropImg, nullImg } from 'utils/constants';
+import { useSelector } from 'react-redux';
+import { useGetGridListCols } from 'hooks/useGetGridListCols';
 
-const DetailCast = ({ getGridListCols }) => {
-    const { credit } = useContext(MovieContext).state;
+const DetailCast = () => {
+    const cols = useGetGridListCols();
+    const credit = useSelector(({ detail }) => detail.credit.results);
 
     return(
         // 출연진  DetailCast
@@ -15,7 +17,7 @@ const DetailCast = ({ getGridListCols }) => {
                 <GS.ListTitle>출연진</GS.ListTitle>
             </GS.ListHeader>
             <GS.MovieContainer>
-                <GS.List cellHeight={'auto'} spacing={20} cols={getGridListCols()}>
+                <GS.List cellHeight={'auto'} spacing={20} cols={cols}>
                 {credit.cast.map((character, i)=> {
                     return (
                         <GridListTile key={i}>
