@@ -9,37 +9,41 @@ export const FETCH_SEARCH_SUCCESS = 'search/FETCH_SEARCH_SUCCESS';
 export const FETCH_SEARCH_FAILURE = 'search/FETCH_SEARCH_FAILURE';
 
 // actions creator
-export const fetchSearchRequest = () => {
+export const fetchSearchRequest = (value) => {
     return {
-        type: FETCH_SEARCH_REQUEST
+        type: FETCH_SEARCH_REQUEST,
+        value,
     }
 }
 
-export const fetchSearchSuccess = results => {
+export const fetchSearchSuccess = (results, value) => {
     return {
         type: FETCH_SEARCH_SUCCESS,
-        payload: results
+        payload: results,
+        value
     }
 }
 
-export const fetchSearchFailure = err => {
+export const fetchSearchFailure = (err, value) => {
     return {
         type: FETCH_SEARCH_FAILURE,
-        payload: err
+        payload: err,
+        value
     }
 }
 
 export const fetchSearchResult = (search) => {
+    console.log(search)
     return (dispatch) => {
-        dispatch(fetchSearchRequest())
+        dispatch(fetchSearchRequest(search))
         axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=ko&query=${search}&page=1&include_adult=false`)
             .then(response => {
                 const results = response.data
-                dispatch(fetchSearchSuccess(results))
+                dispatch(fetchSearchSuccess(results, search))
             })
             .catch(error => {
                 const errorMsg = error.message
-                dispatch(fetchSearchFailure(errorMsg))
+                dispatch(fetchSearchFailure(errorMsg, search))
             });
     }
 }
@@ -56,7 +60,8 @@ export default function reducer(state = initialState, action) {
         case FETCH_SEARCH_REQUEST:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                searchValue: action.value
             }
         case FETCH_SEARCH_SUCCESS:
             return {
@@ -64,13 +69,15 @@ export default function reducer(state = initialState, action) {
                 loading: false,
                 searchResults: action.payload,
                 err: '',
+                searchValue: action.value
             }
         case FETCH_SEARCH_FAILURE:
             return {
                 ...state,
                 loading: false,
                 searchResults: [],
-                err: action.payload
+                err: action.payload,
+                searchValue: action.value
             }
         default:
             return state
