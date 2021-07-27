@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 const FooterContainer = styled.div`
-    border: 1px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
