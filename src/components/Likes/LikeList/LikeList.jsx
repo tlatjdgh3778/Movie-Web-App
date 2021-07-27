@@ -1,39 +1,29 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { GridListTile, GridListTileBar } from '@material-ui/core';
-import { getMovieDetail, getMovieCredit, getMovieRecommendation, getMovieVideo } from 'apis/getMovieData';
 import { backdropImg, nullImg } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
-import { MovieContext } from 'contexts/movie';
 import * as GS from 'style/componentstyle';
 import * as S from './LikeList.style';
+import { useGetGridListCols } from 'hooks/useGetGridListCols';
+import { useDispatch } from 'react-redux';
+import { fetchDetail } from 'store/modules/detail';
 
-const LikeList = ({ getGridListCols }) => {
-    const { setDetail, setCredit, setRecommendation, setVideo } = useContext(MovieContext).actions;
+const LikeList = () => {
+    const cols = useGetGridListCols();
+    const dispatch = useDispatch();
     const [del, setDel] = useState(true);
     const LikeMovies = Object.keys(localStorage);
     const history = useHistory();
-
-    const getDetail = async (id) => {
-        const detail = await getMovieDetail(id);
-        const credit = await getMovieCredit(id);
-        const recommendation = await getMovieRecommendation(id);
-        const video = await getMovieVideo(id);
-
-        await setDetail(detail);
-        await setCredit(credit);
-        await setRecommendation(recommendation);
-        await setVideo(video);
-        history.push(`/Detail/${id}`);
-    };
     
     return(
         <>
-        <GS.ListMovie cellHeight={'auto'} cols={getGridListCols()} spacing={30}> 
-                {LikeMovies.map((movie, i) => {
+        <GS.ListMovie cellHeight={'auto'} cols={cols} spacing={30}> 
+                {LikeMovies.map((movie) => {
                     return(
                         <GridListTile onClick={e => {
-                            getDetail(e.currentTarget.id)
-                        }} key={i} id={JSON.parse(localStorage.getItem(movie)).id}>
+                            dispatch(fetchDetail(e.currentTarget.id))
+                            history.push(`/Detail/${e.currentTarget.id}`)
+                        }} key={movie.id} id={JSON.parse(localStorage.getItem(movie)).id}>
                         <img alt={JSON.parse(localStorage.getItem(movie)).title} src={JSON.parse(localStorage.getItem(movie)).posterPath === null ? nullImg : (backdropImg + JSON.parse(localStorage.getItem(movie)).posterPath)}></img>
                         <GridListTileBar 
                             title={JSON.parse(localStorage.getItem(movie)).title}
