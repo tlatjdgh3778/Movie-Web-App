@@ -12,7 +12,7 @@ const Results = () => {
     if(searchResults.total_results === 0){
         return(
             <>
-                <GS.ExceptionMsg>검색 결과가 없습니다.</GS.ExceptionMsg>
+                <GS.ExceptionMsg>"{searchValue}" 검색 결과가 없습니다.</GS.ExceptionMsg>
             </>
         );
     }else{
