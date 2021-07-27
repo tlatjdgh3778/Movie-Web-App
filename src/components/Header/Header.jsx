@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as S from './Header.style';
-import { connect } from 'react-redux';
 import { toggleModal } from 'store/modules/modal';
 import { fetchSearchResult } from 'store/modules/search';
+import { useDispatch } from 'react-redux';
 
-const Header = ({ toggleModal, fetchSearchResult }) => {
+const Header = () => {
     const history = useHistory();
-
-
+    const dispatch = useDispatch();
     const [value, setValue] = useState("");
 
     const onSubmit = async (e) => {
         e.preventDefault();
         if(value.length !== 0) {
-            fetchSearchResult(value);
+            dispatch(fetchSearchResult(value));
             if(history.location.pathname !== "/Results"){
                 history.push("/Results");
             }
@@ -23,13 +22,9 @@ const Header = ({ toggleModal, fetchSearchResult }) => {
         }
     };
 
-    const onChange = e => {
-        setValue(e.target.value);
-    };
-
     return(
         <S.HeaderContainer>
-            <S.MenuIconButton onClick={toggleModal}>
+            <S.MenuIconButton onClick={() => dispatch(toggleModal())}>
                 <S.CustomMenuIcon/>
             </S.MenuIconButton>
             <S.Title>Movie Web</S.Title>
@@ -38,7 +33,7 @@ const Header = ({ toggleModal, fetchSearchResult }) => {
                 <form onSubmit={onSubmit}>
                     <S.CustomInputBase
                     placeholder="Search.."
-                    onChange={onChange}
+                    onChange={(e) => setValue(e.target.value)}
                     value={value}
                     >
                     </S.CustomInputBase>
@@ -48,14 +43,4 @@ const Header = ({ toggleModal, fetchSearchResult }) => {
     );
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        toggleModal: () => dispatch(toggleModal()),
-        fetchSearchResult: (search) => dispatch(fetchSearchResult(search)),
-    }
-}
-
-export default connect( 
-    null,
-    mapDispatchToProps
-)(Header);
+export default Header;
