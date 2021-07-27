@@ -25,9 +25,9 @@ const DetailVideo = () => {
         <>
         <GS.MovieContainer>
             <GS.List cellHeight={'auto'} spacing={20} cols={cols}>
-                {video.results.map((video, i) => {
+                {video.results.map((video) => {
                     return (
-                        <GridListTile key={i} onClick={() => {
+                        <GridListTile key={video.id} onClick={() => {
                             toYoutube(youtubeLink + video.key)}
                         }>
                             <img alt={video.name} src={video.key === null ? nullImg : (thumbnail + video.key + "/sddefault.jpg")}></img>

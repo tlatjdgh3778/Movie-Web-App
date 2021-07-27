@@ -45,8 +45,8 @@ const DetailIntro = () => {
                             <S.Runtime>{detail.runtime}분</S.Runtime>
                     </S.VoteAndRuntime>
                     <S.Overview>{detail.overview}</S.Overview>
-                    {detail.genres.map((genre, i) => {
-                        return <S.Genre key={i}>{genre.name} </S.Genre>
+                    {detail.genres.map((genre) => {
+                        return <S.Genre key={genre.id}>{genre.name} </S.Genre>
                     })}
                     <S.LikeBtn onClick={like ? deleteLocal : addLocal}>
                         {localStorage.getItem(detail.id) ? <S.CustomDoneIcon /> : <S.CustomAddIcon />}

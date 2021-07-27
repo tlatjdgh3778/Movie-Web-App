@@ -18,9 +18,9 @@ const DetailCast = () => {
             </GS.ListHeader>
             <GS.MovieContainer>
                 <GS.List cellHeight={'auto'} spacing={20} cols={cols}>
-                {credit.cast.map((character, i)=> {
+                {credit.cast.map((character)=> {
                     return (
-                        <GridListTile key={i}>
+                        <GridListTile key={character.id}>
                             <img alt={character.name} src={character.profile_path === null ? nullImg : (backdropImg + character.profile_path)}></img>
                             <GridListTileBar title={character.name} subtitle={character.character + " 역"}></GridListTileBar>
                         </GridListTile>
