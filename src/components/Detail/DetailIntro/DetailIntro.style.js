@@ -30,9 +30,9 @@ const PosterContainer = styled.div`
 `;
 
 const Poster = styled.div`
-    width: 20vw;
+    width: 25vw;
     background-image: url(${({ $posterPath }) => $posterPath });
-    background-size: cover;
+    background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
 
