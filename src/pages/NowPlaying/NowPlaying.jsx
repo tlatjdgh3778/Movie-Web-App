@@ -1,14 +1,22 @@
 import React from 'react';
 import * as GS from 'style/componentstyle';
 import { NowPlayingList } from 'components/NowPlaying/index';
+import { useSelector } from 'react-redux';
+import Loading from 'components/Loading/Loading';
 
 const NowPlaying = () => {
+    const loading = useSelector(({ movies }) => movies.nowPlaying.loading);
+
     return(
         <>
+        {loading ? <Loading /> : 
+            <>
             <GS.ListMovieTitle>상영중인 영화 목록</GS.ListMovieTitle>
             <GS.MovieContainer>        
                 <NowPlayingList />
             </GS.MovieContainer>
+            </>
+        }  
         </>
     );
 }
