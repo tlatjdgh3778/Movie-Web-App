@@ -3,7 +3,6 @@ import * as S from './MainIntro.style';
 import { backdropImg } from 'utils/constants';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchDetail } from 'store/modules/detail';
-import { random } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
 
 const MainIntro = () => {
@@ -11,9 +10,9 @@ const MainIntro = () => {
     const dispatch = useDispatch();
     const trend = useSelector(({ movies }) => movies.trend.results);
     const detail = useSelector(({ detail }) => detail.details.results);
-    
+
     useEffect(() => {
-        dispatch(fetchDetail(trend.results[random].id))
+        dispatch(fetchDetail(trend.results[0].id))
     }, [dispatch, trend.results])
 
     return(
