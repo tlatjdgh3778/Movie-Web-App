@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import GlobalStyle from 'style/global';
 import { ThemeProvider } from 'styled-components';
 import theme from 'style/theme';
@@ -6,87 +6,49 @@ import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import { Detail, Likes, Main, NowPlaying, Popular, Results, TopRated } from 'pages/index';
 import Menu from 'components/Menu/Menu';
-import { StylesProvider, ThemeProvider as MuiThemeProvider, useMediaQuery } from '@material-ui/core';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ModalStateProvider } from 'contexts/modal';
-import { ResultProvider } from 'contexts/results';
+import { StylesProvider } from '@material-ui/core';
 import { MovieProvider } from 'contexts/movie';
-import { ModeContext } from 'contexts/mode';
 import { Switch, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const { isDark } = useContext(ModeContext).state;
-
-  const themeBreakPoint = createMuiTheme({
-    breakpoints: {
-      values: {
-        mobile: '(max-width:480px)',
-        tablet: '(min-width:481px) and (max-width:768px)',
-        laptop: '(min-width:769px) and (max-width:1024px)',
-        desktop: '(min-width:1025px)',
-      },
-    },
-  });
-  const mobileMatches = useMediaQuery('(max-width:480px)');
-  const tabletMatches = useMediaQuery('(min-width:481px) and (max-width:768px)');
-  const laptopMatches = useMediaQuery('(min-width:769px) and (max-width:1024px)');
-  const desktopMatches = useMediaQuery('(min-width:1025px)');
-
-  const getGridListCols = () => {
-      if(mobileMatches){
-          return 1;
-      }
-      if(tabletMatches){
-          return 2;
-      }
-      if(laptopMatches){
-          return 3;
-      }
-      if(desktopMatches){
-          return 4;
-      }
-  }
+  const isDark = useSelector(({ mode }) => mode.isDark);
+  
   return (
     <>
     <StylesProvider injectFirst>
     <ThemeProvider theme={isDark ? theme.darkMode : theme.lightMode}>
-      <MuiThemeProvider theme={themeBreakPoint}>
       <GlobalStyle />
         <div className="App">
             <MovieProvider>
-            <ResultProvider>
-            <ModalStateProvider>
               <Header></Header>
               <Switch>
                 <Route exact path="/">
-                  <Main getGridListCols={getGridListCols}></Main>
+                  <Main></Main>
                 </Route>
                 <Route exact path="/Popular">
-                  <Popular getGridListCols={getGridListCols}></Popular>
+                  <Popular></Popular>
                 </Route>
                 <Route exact path="/NowPlaying">
-                  <NowPlaying getGridListCols={getGridListCols}></NowPlaying>
+                  <NowPlaying></NowPlaying>
                 </Route>
                 <Route exact path="/TopRated">
-                  <TopRated getGridListCols={getGridListCols}></TopRated>
+                  <TopRated></TopRated>
                 </Route>
                 <Route exact path="/Likes">
-                  <Likes getGridListCols={getGridListCols}></Likes>
+                  <Likes></Likes>
                 </Route>
                 <Route exact path="/Results">
-                  <Results getGridListCols={getGridListCols}></Results>
+                  <Results></Results>
                 </Route>
                 <Route path="/Detail">
-                  <Detail getGridListCols={getGridListCols}></Detail>
+                  <Detail></Detail>
                 </Route>
               </Switch>
               <Menu></Menu>
               <Footer></Footer>
-            </ModalStateProvider>
-            </ResultProvider>
             </MovieProvider>
         </div>
-        </MuiThemeProvider>
       </ThemeProvider>
       </StylesProvider>
     </>
