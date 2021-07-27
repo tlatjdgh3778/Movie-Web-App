@@ -1,9 +1,11 @@
 import React from 'react';
 import * as GS from 'style/componentstyle';
 import { ResultList } from 'components/Results/index';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const Results = ({ getGridListCols, searchValue, searchResults }) => {
+const Results = () => {
+    const searchValue = useSelector(({ search }) => search.searchValue);
+    const searchResults = useSelector(({ search }) => search.searchResults);
 
     if(searchResults.total_results === 0){
         return(
@@ -17,20 +19,11 @@ const Results = ({ getGridListCols, searchValue, searchResults }) => {
             {/* 영화 결과 */}
             <GS.ListMovieTitle>"{searchValue}" 검색 결과</GS.ListMovieTitle>
             <GS.MovieContainer>        
-                <ResultList getGridListCols={getGridListCols} />
+                <ResultList />
             </GS.MovieContainer>
             </>
         );
     }
 }
 
-const mapStateToProps = ({ search }) => {
-    return {
-        searchResults: search.searchResults,
-        searchValue: search.searchValue
-    }
-}
-
-export default connect(
-    mapStateToProps
-)(Results);
+export default Results;
