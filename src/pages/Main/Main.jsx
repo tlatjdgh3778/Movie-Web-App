@@ -1,31 +1,38 @@
-import React from 'react';
-import * as S from './Main.style';
-import { MainIntro, MainPopular, MainNowPlaying, MainTopRated } from 'components/Main/index';
-import { useSelector } from 'react-redux';
-import Loading from 'components/Loading/Loading';
-import { useMainRender } from 'hooks/useMainRender';
+import React from "react";
+import * as S from "./Main.style";
+import { MainIntro, MainPopular, MainNowPlaying, MainTopRated } from "components/Main/index";
+import { useSelector } from "react-redux";
+import Loading from "components/Loading/Loading";
+import { useRender } from "hooks/useRender";
 
 const Main = () => {
     // initial Render
-    useMainRender()
+    useRender("trend");
+    useRender("popular");
+    useRender("now_playing");
+    useRender("top_rated");
 
-    const trend = useSelector(({ movies }) => movies.trend);
-    const popular = useSelector(({ movies }) => movies.popular);
-    const nowPlaying = useSelector(({ movies }) => movies.nowPlaying);
-    const topRated = useSelector(({ movies }) => movies.topRated);
-    
-    if(popular.success && nowPlaying.success && topRated.success && trend.success){
-        return (
-            <S.MainContainer>
-                <MainIntro></MainIntro>
-                <MainPopular></MainPopular>
-                <MainNowPlaying></MainNowPlaying>
-                <MainTopRated></MainTopRated>
-            </S.MainContainer>
-        )
-    }else{
-        return <Loading />
-    }
-}
+    const trendLoading = useSelector(({ movies }) => movies.trend.results);
+    const popularLoading = useSelector(({ movies }) => movies.popular.results);
+    const nowPlayingLoading = useSelector(({ movies }) => movies.nowPlaying.results);
+    const topRatedLoading = useSelector(({ movies }) => movies.topRated.results);
+
+    console.log(trendLoading);
+    // console.log(popularLoading);
+    // console.log(nowPlayingLoading);
+    // console.log(topRatedLoading);
+    return (
+        <>
+            <>
+                <S.MainContainer>
+                    {trendLoading.length === 0 ? <Loading /> : <MainIntro />}
+                    {popularLoading.length === 0 ? <Loading /> : <MainPopular />}
+                    {nowPlayingLoading.length === 0 ? <Loading /> : <MainNowPlaying />}
+                    {topRatedLoading.length === 0 ? <Loading /> : <MainTopRated />}
+                </S.MainContainer>
+            </>
+        </>
+    );
+};
 
 export default Main;
