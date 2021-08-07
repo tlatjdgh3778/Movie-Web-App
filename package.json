@@ -2,6 +2,10 @@
     "name": "movie-web-app",
     "version": "0.1.0",
     "license": "MIT",
+    "author": {
+        "name": "Shim SeongHo",
+        "url": "https://github.com/tlatjdgh3778/Movie-Web-App"
+    },
     "private": true,
     "dependencies": {
         "@material-ui/core": "^4.11.4",
