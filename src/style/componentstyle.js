@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { GridList } from '@material-ui/core';
+import styled, { css } from "styled-components";
+import { GridList } from "@material-ui/core";
 
 const BackgroundImage = css`
     background-image: url(${({ backdropPath }) => backdropPath});
@@ -42,7 +42,6 @@ const ListTitle = styled.div`
     ${(props) => props.theme.device.Tablet} {
         font-size: ${(props) => props.theme.fontSize.md};
     }
-
 `;
 const ViewAll = styled.div`
     cursor: pointer;
@@ -57,7 +56,6 @@ const ViewAll = styled.div`
     ${(props) => props.theme.device.Tablet} {
         font-size: ${(props) => props.theme.fontSize.sm};
     }
-
 `;
 
 const MovieContainer = styled.div`
@@ -88,6 +86,7 @@ const List = styled(GridList)`
 `;
 const ListMovie = styled(GridList)`
     padding: 3vw;
+    width: 100%;
 `;
 
 const ListMovieTitle = styled.div`
@@ -106,4 +105,15 @@ const ExceptionMsg = styled.div`
     font-weight: 700;
 `;
 
-export { ListContainer, ListHeader, ListTitle, ViewAll, MovieContainer, List, BackgroundImage, ListMovie, ListMovieTitle, ExceptionMsg };
+export {
+    ListContainer,
+    ListHeader,
+    ListTitle,
+    ViewAll,
+    MovieContainer,
+    List,
+    BackgroundImage,
+    ListMovie,
+    ListMovieTitle,
+    ExceptionMsg,
+};
