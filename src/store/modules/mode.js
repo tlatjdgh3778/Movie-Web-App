@@ -1,28 +1,30 @@
 // mode module
-// ducks pattern 
+// ducks pattern
+import produce from "immer";
 
 // types
-export const CHANGE_MODE = 'mode/CHANGE_MODE';
+export const CHANGE_MODE = "mode/CHANGE_MODE";
 
 // action creator
 export const changeMode = () => {
     return {
-        type: CHANGE_MODE
-    }
-}
+        type: CHANGE_MODE,
+    };
+};
 
 // reducer
 const initialState = {
-    isDark: true
-}
+    isDark: true,
+};
 
 export default function reducer(state = initialState, action) {
-    switch (action.type) {
-        case CHANGE_MODE:
-            return {
-                isDark: !state.isDark
-            }
-        default:
-            return state
-    }
+    return produce(state, (draft) => {
+        switch (action.type) {
+            case CHANGE_MODE:
+                draft.isDark = !draft.isDark;
+                break;
+            default:
+                break;
+        }
+    });
 }
