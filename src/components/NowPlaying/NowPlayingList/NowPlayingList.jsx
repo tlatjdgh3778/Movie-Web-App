@@ -13,18 +13,16 @@ const NowPlayingList = () => {
     const nowPlaying = useSelector(({ movies }) => movies.nowPlaying.results);
     const history = useHistory();
 
+    const getDetail = (e) => {
+        dispatch(fetchDetail(e.currentTarget.id));
+        history.push(`/Detail/${e.currentTarget.id}`);
+    };
+
     return (
         <>
             <GS.ListMovie cellHeight={"auto"} cols={cols} spacing={30}>
                 {nowPlaying.results.map((movie) => (
-                    <GridListTile
-                        onClick={(e) => {
-                            dispatch(fetchDetail(e.currentTarget.id));
-                            history.push(`/Detail/${e.currentTarget.id}`);
-                        }}
-                        key={movie.id}
-                        id={movie.id}
-                    >
+                    <GridListTile onClick={getDetail} key={movie.id} id={movie.id}>
                         <img
                             alt={movie.title}
                             src={
