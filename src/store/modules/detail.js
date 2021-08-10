@@ -1,6 +1,7 @@
 // detail module
 // ducks pattern
 import axios from "axios";
+import produce from "immer";
 import { API_KEY } from "utils/constants";
 // detail, cast, video, reco
 
@@ -122,135 +123,64 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-    switch (action.type) {
-        case FETCH_DETAIL_REQUEST:
-            if (action.filter === "credit") {
-                return {
-                    ...state,
-                    credit: {
-                        ...state.credit,
-                        loading: true,
-                    },
-                };
-            }
-            if (action.filter === "video") {
-                return {
-                    ...state,
-                    video: {
-                        ...state.video,
-                        loading: true,
-                    },
-                };
-            }
-            if (action.filter === "recommendation") {
-                return {
-                    ...state,
-                    recommendation: {
-                        ...state.recommendation,
-                        loading: true,
-                    },
-                };
-            } else {
-                return {
-                    ...state,
-                    details: {
-                        ...state.details,
-                        loading: true,
-                    },
-                };
-            }
-        /* falls through */
-        case FETCH_DETAIL_SUCCESS:
-            if (action.filter === "credit") {
-                return {
-                    ...state,
-                    credit: {
-                        ...state.credit,
-                        loading: false,
-                        results: action.payload,
-                        success: true,
-                    },
-                };
-            }
-            if (action.filter === "video") {
-                return {
-                    ...state,
-                    video: {
-                        ...state.video,
-                        loading: false,
-                        results: action.payload,
-                        success: true,
-                    },
-                };
-            }
-            if (action.filter === "recommendation") {
-                return {
-                    ...state,
-                    recommendation: {
-                        ...state.recommendation,
-                        loading: false,
-                        results: action.payload,
-                        success: true,
-                    },
-                };
-            } else {
-                return {
-                    ...state,
-                    details: {
-                        ...state.details,
-                        loading: false,
-                        results: action.payload,
-                        success: true,
-                    },
-                };
-            }
-        /* falls through */
-        case FETCH_DETAIL_FAILURE:
-            if (action.filter === "credit") {
-                return {
-                    ...state,
-                    credit: {
-                        ...state.credit,
-                        loading: false,
-                        results: [],
-                        err: action.payload,
-                    },
-                };
-            }
-            if (action.filter === "video") {
-                return {
-                    ...state,
-                    video: {
-                        ...state.video,
-                        loading: false,
-                        results: [],
-                        err: action.payload,
-                    },
-                };
-            }
-            if (action.filter === "recommendation") {
-                return {
-                    ...state,
-                    recommendation: {
-                        ...state.recommendation,
-                        loading: false,
-                        results: [],
-                        err: action.payload,
-                    },
-                };
-            } else {
-                return {
-                    ...state,
-                    details: {
-                        ...state.details,
-                        loading: false,
-                        results: [],
-                        err: action.payload,
-                    },
-                };
-            }
-        /* falls through */
-        default:
-            return state;
-    }
+    return produce(state, (draft) => {
+        switch (action.type) {
+            case FETCH_DETAIL_REQUEST:
+                if (action.filter === "credit") {
+                    draft.credit.loading = true;
+                    break;
+                } else if (action.filter === "video") {
+                    draft.video.loading = true;
+                    break;
+                } else if (action.filter === "recommendation") {
+                    draft.recommendation.loading = true;
+                    break;
+                } else {
+                    draft.details.loading = true;
+                    break;
+                }
+            case FETCH_DETAIL_SUCCESS:
+                if (action.filter === "credit") {
+                    draft.credit.loading = false;
+                    draft.credit.results = action.payload;
+                    break;
+                } else if (action.filter === "video") {
+                    draft.video.loading = false;
+                    draft.video.results = action.payload;
+                    break;
+                } else if (action.filter === "recommendation") {
+                    draft.recommendation.loading = false;
+                    draft.recommendation.results = action.payload;
+                    break;
+                } else {
+                    draft.details.loading = false;
+                    draft.details.results = action.payload;
+                    break;
+                }
+            case FETCH_DETAIL_FAILURE:
+                if (action.filter === "credit") {
+                    draft.credit.loading = false;
+                    draft.credit.results = [];
+                    draft.credit.err = action.payload;
+                    break;
+                } else if (action.filter === "video") {
+                    draft.video.loading = false;
+                    draft.video.results = [];
+                    draft.video.err = action.payload;
+                    break;
+                } else if (action.filter === "recommendation") {
+                    draft.recommendation.loading = false;
+                    draft.recommendation.results = [];
+                    draft.recommendation.err = action.payload;
+                    break;
+                } else {
+                    draft.details.loading = false;
+                    draft.details.results = [];
+                    draft.details.err = action.payload;
+                    break;
+                }
+            default:
+                break;
+        }
+    });
 }

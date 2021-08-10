@@ -1,6 +1,7 @@
 // movies module
 // popular, nowPlaying, topRated
 import axios from "axios";
+import produce from "immer";
 import { API_KEY } from "utils/constants";
 
 // types
@@ -76,138 +77,64 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-    switch (action.type) {
-        case FETCH_MOVIES_REQUEST:
-            if (action.filter === "popular") {
-                return {
-                    ...state,
-                    popular: {
-                        ...state.popular,
-                        loading: true,
-                    },
-                };
-            }
-            if (action.filter === "top_rated") {
-                return {
-                    ...state,
-                    topRated: {
-                        ...state.topRated,
-                        loading: true,
-                    },
-                };
-            }
-            if (action.filter === "now_playing") {
-                return {
-                    ...state,
-                    nowPlaying: {
-                        ...state.nowPlaying,
-                        loading: true,
-                    },
-                };
-            }
-            if (action.filter === "trend") {
-                return {
-                    ...state,
-                    trend: {
-                        ...state.trend,
-                        loading: true,
-                    },
-                };
-            }
-        /* falls through */
-        case FETCH_MOVIES_SUCCESS:
-            if (action.filter === "popular") {
-                return {
-                    ...state,
-                    popular: {
-                        ...state.popular,
-                        loading: false,
-                        results: action.payload,
-                        success: true,
-                    },
-                };
-            }
-            if (action.filter === "top_rated") {
-                return {
-                    ...state,
-                    topRated: {
-                        ...state.topRated,
-                        loading: false,
-                        results: action.payload,
-                        success: true,
-                    },
-                };
-            }
-            if (action.filter === "now_playing") {
-                return {
-                    ...state,
-                    nowPlaying: {
-                        ...state.nowPlaying,
-                        loading: false,
-                        results: action.payload,
-                        success: true,
-                    },
-                };
-            }
-            if (action.filter === "trend") {
-                return {
-                    ...state,
-                    trend: {
-                        ...state.trend,
-                        loading: false,
-                        results: action.payload,
-                        success: true,
-                    },
-                };
-            }
-        /* falls through */
-        case FETCH_MOVIES_FAILURE:
-            if (action.filter === "popular") {
-                return {
-                    ...state,
-                    popular: {
-                        ...state.popular,
-                        loading: false,
-                        results: [],
-                        err: action.payload,
-                    },
-                };
-            }
-            if (action.filter === "top_rated") {
-                return {
-                    ...state,
-                    topRated: {
-                        ...state.topRated,
-                        loading: false,
-                        results: [],
-                        err: action.payload,
-                    },
-                };
-            }
-            if (action.filter === "now_playing") {
-                return {
-                    ...state,
-                    nowPlaying: {
-                        ...state.nowPlaying,
-                        loading: false,
-                        results: [],
-                        err: action.payload,
-                    },
-                };
-            }
-            if (action.filter === "trend") {
-                return {
-                    ...state,
-                    trend: {
-                        ...state.trend,
-                        loading: false,
-                        results: [],
-                        err: action.payload,
-                    },
-                };
-            }
-        /* falls through */
-        default:
-            return state;
-    }
+    return produce(state, (draft) => {
+        switch (action.type) {
+            case FETCH_MOVIES_REQUEST:
+                if (action.filter === "popular") {
+                    draft.popular.loading = true;
+                    break;
+                } else if (action.filter === "top_rated") {
+                    draft.topRated.loading = true;
+                    break;
+                } else if (action.filter === "now_playing") {
+                    draft.nowPlaying.loading = true;
+                    break;
+                } else {
+                    draft.trend.loading = true;
+                    break;
+                }
+            case FETCH_MOVIES_SUCCESS:
+                if (action.filter === "popular") {
+                    draft.popular.loading = false;
+                    draft.popular.results = action.payload;
+                    break;
+                } else if (action.filter === "top_rated") {
+                    draft.topRated.loading = false;
+                    draft.topRated.results = action.payload;
+                    break;
+                } else if (action.filter === "now_playing") {
+                    draft.nowPlaying.loading = false;
+                    draft.nowPlaying.results = action.payload;
+                    break;
+                } else {
+                    draft.trend.loading = false;
+                    draft.trend.results = action.payload;
+                    break;
+                }
+            case FETCH_MOVIES_FAILURE:
+                if (action.filter === "popular") {
+                    draft.popular.loading = false;
+                    draft.popular.results = [];
+                    draft.popular.err = action.payload;
+                    break;
+                } else if (action.filter === "top_rated") {
+                    draft.topRated.loading = false;
+                    draft.topRated.results = [];
+                    draft.topRated.err = action.payload;
+                    break;
+                } else if (action.filter === "now_playing") {
+                    draft.nowPlaying.loading = false;
+                    draft.nowPlaying.results = [];
+                    draft.nowPlaying.err = action.payload;
+                    break;
+                } else {
+                    draft.trend.loading = false;
+                    draft.trend.results = [];
+                    draft.trend.err = action.payload;
+                    break;
+                }
+            default:
+                break;
+        }
+    });
 }
