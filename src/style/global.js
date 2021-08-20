@@ -1,5 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
-
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 :root {
@@ -9,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     --scrollbarHover-color: #6b6666;
 }
 * {
+    font-size: 70%;
     font-family: 'Noto Sans KR', 'Roboto', sans-serif !important;
     margin: 0;
     padding: 0;
@@ -104,4 +104,4 @@ a {
 }
 `;
 
-export default GlobalStyle; 
+export default GlobalStyle;
