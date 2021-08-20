@@ -1,14 +1,13 @@
 import React from "react";
+
 import * as GS from "style/componentstyle";
-import { GridListTile, GridListTileBar } from "@material-ui/core";
-import { backdropImg, nullImg } from "utils/constants";
+import { backdropImg } from "utils/constants";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchDetail } from "store/modules/detail";
 import { useHistory } from "react-router";
-import { useGetGridListCols } from "hooks/useGetGridListCols";
+import { sliderSettings } from "utils/constants";
 
 const DetailRecommendation = () => {
-    const cols = useGetGridListCols();
     const history = useHistory();
     const dispatch = useDispatch();
     const recommendation = useSelector(({ detail }) => detail.recommendation.results);
@@ -30,29 +29,24 @@ const DetailRecommendation = () => {
                 ) : (
                     <>
                         <GS.MovieContainer>
-                            <GS.List cellHeight={"auto"} spacing={20} cols={cols}>
-                                {recommendation.results.map((recommendation) => {
-                                    return (
-                                        <GridListTile
-                                            id={recommendation.id}
-                                            key={recommendation.id}
-                                            onClick={getDetail}
-                                        >
-                                            <img
-                                                alt={recommendation.title}
-                                                src={
-                                                    recommendation.poster_path === null
-                                                        ? nullImg
-                                                        : backdropImg + recommendation.poster_path
-                                                }
-                                            ></img>
-                                            <GridListTileBar
-                                                title={recommendation.title}
-                                            ></GridListTileBar>
-                                        </GridListTile>
-                                    );
-                                })}
-                            </GS.List>
+                            <GS.CustomSlider {...sliderSettings}>
+                                {recommendation.results.map((movie) => (
+                                    <GS.MovieWrapper
+                                        onClick={getDetail}
+                                        key={movie.id}
+                                        id={movie.id}
+                                    >
+                                        <GS.MovieImg
+                                            alt={movie.title}
+                                            src={backdropImg + movie.poster_path}
+                                        />
+                                        {/* movie.poster_path === null
+                                                    ? nullImg
+                                                    : backdropImg + movie.poster_path */}
+                                        <GS.Title>{movie.title}</GS.Title>
+                                    </GS.MovieWrapper>
+                                ))}
+                            </GS.CustomSlider>
                         </GS.MovieContainer>
                     </>
                 )}

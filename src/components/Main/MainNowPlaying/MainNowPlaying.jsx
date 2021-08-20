@@ -1,15 +1,13 @@
 import React from "react";
+
 import * as GS from "style/componentstyle";
 import { backdropImg, nullImg } from "utils/constants";
-import { GridListTile, GridListTileBar } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { fetchDetail } from "store/modules/detail";
-import { useGetGridListCols } from "hooks/useGetGridListCols";
+import { sliderSettings } from "utils/constants";
 
 const MainNowPlaying = () => {
-    const cols = useGetGridListCols();
-
     const nowPlaying = useSelector(({ movies }) => movies.nowPlaying.results);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -33,23 +31,21 @@ const MainNowPlaying = () => {
                 </GS.ViewAll>
             </GS.ListHeader>
             <GS.MovieContainer>
-                <GS.List cellHeight={"auto"} spacing={20} cols={cols}>
-                    {nowPlaying.results.map((movie) => {
-                        return (
-                            <GridListTile id={movie.id} key={movie.id} onClick={getDetail}>
-                                <img
-                                    alt={movie.title}
-                                    src={
-                                        movie.poster_path === null
-                                            ? nullImg
-                                            : backdropImg + movie.poster_path
-                                    }
-                                ></img>
-                                <GridListTileBar title={movie.title}></GridListTileBar>
-                            </GridListTile>
-                        );
-                    })}
-                </GS.List>
+                <GS.CustomSlider {...sliderSettings}>
+                    {nowPlaying.results.map((movie) => (
+                        <GS.MovieWrapper onClick={getDetail} key={movie.id} id={movie.id}>
+                            <GS.MovieImg
+                                alt={movie.title}
+                                src={
+                                    movie.poster_path === null
+                                        ? nullImg
+                                        : backdropImg + movie.poster_path
+                                }
+                            />
+                            <GS.Title>{movie.title}</GS.Title>
+                        </GS.MovieWrapper>
+                    ))}
+                </GS.CustomSlider>
             </GS.MovieContainer>
         </GS.ListContainer>
     );
