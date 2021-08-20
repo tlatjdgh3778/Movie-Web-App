@@ -15,8 +15,8 @@ const NowPlaying = () => {
                 <Loading />
             ) : (
                 <>
-                    <GS.ListMovieTitle>상영중인 영화 목록</GS.ListMovieTitle>
                     <GS.MovieContainer>
+                        <GS.ListMovieTitle>상영중인 영화 목록</GS.ListMovieTitle>
                         <NowPlayingList />
                     </GS.MovieContainer>
                 </>

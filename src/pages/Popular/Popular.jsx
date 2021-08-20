@@ -16,8 +16,8 @@ const Popular = () => {
                 <Loading />
             ) : (
                 <>
-                    <GS.ListMovieTitle>인기 영화 목록</GS.ListMovieTitle>
                     <GS.MovieContainer>
+                        <GS.ListMovieTitle>인기 영화 목록</GS.ListMovieTitle>
                         <PopularList />
                     </GS.MovieContainer>
                 </>

@@ -16,8 +16,8 @@ const TopRated = () => {
                 <Loading />
             ) : (
                 <>
-                    <GS.ListMovieTitle>별점이 높은 영화 목록</GS.ListMovieTitle>
                     <GS.MovieContainer>
+                        <GS.ListMovieTitle>별점이 높은 영화 목록</GS.ListMovieTitle>
                         <TopRatedList />
                     </GS.MovieContainer>
                 </>
