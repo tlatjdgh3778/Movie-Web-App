@@ -1,1 +1,0 @@
-export { default as NowPlayingList } from './NowPlayingList/NowPlayingList';
