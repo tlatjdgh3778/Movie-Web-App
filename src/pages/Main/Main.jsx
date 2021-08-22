@@ -17,10 +17,6 @@ const Main = () => {
     const nowPlayingLoading = useSelector(({ movies }) => movies.nowPlaying.results);
     const topRatedLoading = useSelector(({ movies }) => movies.topRated.results);
 
-    console.log(trendLoading);
-    // console.log(popularLoading);
-    // console.log(nowPlayingLoading);
-    // console.log(topRatedLoading);
     return (
         <>
             <>
