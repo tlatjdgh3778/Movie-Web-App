@@ -1,4 +1,4 @@
-import { Detail, Likes, Main, NowPlaying, Popular, Results, TopRated } from "pages";
+import { Detail, Likes, Main, Results, Movie } from "pages";
 
 export const routes = [
     {
@@ -17,23 +17,23 @@ export const routes = [
         exact: true,
     },
     {
-        path: "/NowPlaying",
-        page: NowPlaying,
-        exact: true,
-    },
-    {
-        path: "/Popular",
-        page: Popular,
-        exact: true,
-    },
-    {
         path: "/Results",
         page: Results,
         exact: true,
     },
     {
+        path: "/NowPlaying",
+        page: Movie,
+        exact: true,
+    },
+    {
+        path: "/Popular",
+        page: Movie,
+        exact: true,
+    },
+    {
         path: "/TopRated",
-        page: TopRated,
+        page: Movie,
         exact: true,
     },
 ];
