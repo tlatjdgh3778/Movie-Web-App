@@ -230,6 +230,8 @@ const MovieImg = styled.img`
     object-fit: cover;
     border-radius: 0.8rem;
     cursor: pointer;
+    border-radius: 0.8rem;
+    box-shadow: rgb(0 0 0 / 50%) 0px 5px 3px 0px;
 
     ${({ theme }) => theme.device.LapTop} {
         height: 23rem;
