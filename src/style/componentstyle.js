@@ -59,7 +59,7 @@ const BackgroundImage = css`
 
 // 영화 리스트 재활용 가능..
 const ListContainer = styled.div`
-    background-color: ${(props) => props.theme.color.listBgColor};
+    background-color: ${({ theme }) => theme.color.listBgColor};
     padding: 3rem 2rem;
     margin: 1rem;
 `;
@@ -71,27 +71,30 @@ const ListHeader = styled.div`
 `;
 
 const ListTitle = styled.div`
-    color: ${(props) => props.theme.color.fontColor};
+    color: ${({ theme }) => theme.color.fontColor};
     font-weight: 700;
-    font-size: ${(props) => props.theme.fontSize.xl};
+    font-size: ${({ theme }) => theme.fontSize.xl};
 
-    ${(props) => props.theme.device.Tablet} {
-        font-size: ${(props) => props.theme.fontSize.md};
+    ${({ theme }) => theme.device.Tablet} {
+        font-size: ${({ theme }) => theme.fontSize.lg};
     }
 `;
 
 const ViewAll = styled.div`
     cursor: pointer;
-    color: ${(props) => props.theme.color.fontColor};
+    color: ${({ theme }) => theme.color.fontColor};
     font-weight: 700;
-
+    font-size: ${({ theme }) => theme.fontSize.xl};
     &:hover {
         transition: all 0.2s ease;
-        color: ${(props) => props.theme.color.fontHoverColor};
+        color: ${({ theme }) => theme.color.fontHoverColor};
     }
 
-    ${(props) => props.theme.device.Tablet} {
-        font-size: ${(props) => props.theme.fontSize.sm};
+    ${({ theme }) => theme.device.Tablet} {
+        font-size: ${({ theme }) => theme.fontSize.lg};
+    }
+    ${({ theme }) => theme.device.Mobile} {
+        font-size: ${({ theme }) => theme.fontSize.md};
     }
 `;
 
@@ -102,18 +105,34 @@ const MovieContainer = styled.div`
 `;
 
 const ListMovieTitle = styled.div`
-    text-align: center;
-    font-weight: 700;
-    padding: 1rem;
-    font-size: 3rem;
-    color: ${(props) => props.theme.color.fontColor};
+    text-align: left;
+    margin-left: 3rem;
+    padding-top: 2rem;
+    font-size: ${({ theme }) => theme.fontSize.xxl};
+    color: ${({ theme }) => theme.color.fontColor};
+
+    ${({ theme }) => theme.device.Tablet} {
+        font-size: ${({ theme }) => theme.fontSize.xl};
+    }
+`;
+
+const ListMovieSubTitle = styled.div`
+    text-align: left;
+    margin-left: 3rem;
+    font-weight: 300;
+    font-size: ${({ theme }) => theme.fontSize.xl};
+    color: ${({ theme }) => theme.color.fontColor};
+
+    ${({ theme }) => theme.device.Tablet} {
+        font-size: ${({ theme }) => theme.fontSize.lg};
+    }
 `;
 
 const ExceptionMsg = styled.div`
     padding: 1rem 0;
     text-align: center;
-    color: ${(props) => props.theme.color.fontColor};
-    font-size: ${(props) => props.theme.fontSize.lg};
+    color: ${({ theme }) => theme.color.fontColor};
+    font-size: ${({ theme }) => theme.fontSize.lg};
     font-weight: 700;
 `;
 
@@ -243,10 +262,6 @@ const SubTitle = styled.div`
 
 const CustomStarBorderIcon = styled(StarBorderIcon)`
     color: rgba(255, 255, 255, 0.8);
-
-    ${(props) => props.theme.device.Tablet} {
-        color: ${(props) => props.theme.color.fontSubColor};
-    }
 `;
 
 export {
@@ -257,6 +272,7 @@ export {
     MovieContainer,
     BackgroundImage,
     ListMovieTitle,
+    ListMovieSubTitle,
     ExceptionMsg,
     MainMoviesWrapper,
     MovieWrapper,
