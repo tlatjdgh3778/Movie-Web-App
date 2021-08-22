@@ -24,12 +24,16 @@ const CustomSlider = styled(Slider)`
     .slick-arrow {
         z-index: 1000;
     }
+
+    .slick-next {
+        margin-right: 10px;
+    }
     .slick-next:before,
     .slick-prev:before {
         font-size: 30px;
         line-height: 1;
-        opacity: 1.75;
-        color: ${(props) => props.theme.color.fontColor};
+        opacity: 0.25;
+        color: ${({ theme }) => theme.color.fontColor};
     }
 `;
 
