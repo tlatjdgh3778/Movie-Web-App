@@ -82,15 +82,23 @@ export default function reducer(state = initialState, action) {
             case FETCH_MOVIES_REQUEST:
                 if (action.filter === "popular") {
                     draft.popular.loading = true;
+                    draft.popular.results = [];
+                    draft.popular.err = "";
                     break;
                 } else if (action.filter === "top_rated") {
                     draft.topRated.loading = true;
+                    draft.topRated.results = [];
+                    draft.topRated.err = "";
                     break;
                 } else if (action.filter === "now_playing") {
                     draft.nowPlaying.loading = true;
+                    draft.nowPlaying.results = [];
+                    draft.nowPlaying.err = "";
                     break;
                 } else {
                     draft.trend.loading = true;
+                    draft.trend.results = [];
+                    draft.trend.err = "";
                     break;
                 }
             case FETCH_MOVIES_SUCCESS:
